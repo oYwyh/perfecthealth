@@ -1,0 +1,27 @@
+<?php
+
+namespace ProtoneMedia\Splade\FormBuilder;
+
+use ProtoneMedia\Splade\Components\Form\Checkbox as SpladeCheckbox;
+use ProtoneMedia\Splade\FormBuilder\Concerns\HasValue;
+
+class Checkbox extends Component
+{
+    use HasValue;
+
+    /**
+     * Renders the SpladeCheckbox
+     *
+     * @return \Closure|\Illuminate\Contracts\View\View|string
+     */
+    public function toSpladeComponent()
+    {
+        return new SpladeCheckbox(
+            name: $this->name,
+            checked: $this->checked,
+            value: $this->value ?? true,
+            label: $this->label,
+            help: $this->help,
+        );
+    }
+}

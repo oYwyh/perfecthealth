@@ -1,0 +1,81 @@
+@mixin row {
+    display: flex;
+    flex-direction: row;
+}
+@mixin column {
+    display: flex;
+    flex-direction: column;
+}
+@mixin space-between {
+    display: flex;
+    justify-content: space-between;
+}
+@mixin rounded {
+    border-radius: 50%;
+}
+@mixin bg {
+    width: 100%;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    border-radius: 15px;
+    padding: 1rem;
+}
+@mixin reqver {
+    position: relative;
+    width: 100%;
+}
+@mixin reqlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.285);
+    .note {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 35px;
+        z-index: 20;
+        background-color: rgba(198, 198, 198, 0.512);
+        border-radius: 16px;
+        padding: 2rem 2rem;
+        @media (max-width:991px) {
+            padding: 1rem 0.5rem;
+            font-size: 25px;
+            gap: 1rem;
+            text-align: center;
+        }
+        .group {
+            display: flex;
+            flex-direction: row;
+            @media (max-width:991px) {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            svg {
+                width: 40px;
+                height: 40px;
+                @media (max-width:991px) {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+        .now {
+            font-size: 25px;
+            border: 1px solid black;
+            background-color: #fff3cd;
+            border-radius: 5px;
+            padding: 2px 6px;
+            margin-left: 0.5rem;
+            @media (max-width:991px) {
+                font-size: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+<?php
+
+return [
+    'landingTitle' => 'أستشاري جراحة عامة',
+    'landingDescription' => 'نحن نهتم بصحتك',
+    'landingBtn' => '!تواصل معنا',
+    'landginEndBoxOneTitle' => 'جراحة عامة',
+    'landginEndBoxOneDescription' => 'حل لكل شئ',
+    'landginEndBoxTwoTitle' => 'جراحة اوعية دموية',
+    'landginEndBoxTwoDescription' => 'حل لكل شئ',
+    'landginEndBoxThreeTitle' => 'جراحة اطفال',
+    'landginEndBoxThreeDescription' => 'حل لكل شئ',
+    'waleed' => 'د/ وليد هيكل',
+    'servicesTitle' => 'خدماتنا',
+    'articlesTitle' => 'أحدث المقالات',
+    'uniqueTitle' => 'ماذا يمزنا عن الآخرين؟',
+    'insurancesTitle' => 'هل عليك الوثوق بنا ؟',
+    'statsTitle' => 'نجاحتنا',
+    'reviewsTitle' => 'آراء عملائنا',
+    'contactTitle' => 'تواصل معنا',
+    'locationTitle' => 'موقعنا',
+    'locationBoxOneTitle' => 'السادس من اكتوبر',
+    'locationBoxOneDescription' => 'عمارة 361 المحور المركزي - 6 اكتوبر',
+    'locationBoxOneHours' => '4PM - 7PM',
+    'locationBoxOneDays' => 'السبت | الأربعاء',
+    'locationBoxTwoTitle' => 'الشيخ زايد',
+    'locationBoxTwoDescription' => 'الجيزة - المحور المركزي - عقار 9 مول الداون تاون - عياده 315',
+    'locationBoxTwoDays' => 'السبت | الخميس',
+    'locationBoxTwoHours' => '7PM - 10PM',
+    'facebook' => 'فيسبوك',
+    'instagram' => 'إنستجرام',
+    'messenger' => 'ماسنجر',
+    'whatsapp' => 'واتساب',
+    'phone' => 'الهاتف',
+    'mail' => 'البريد',
+    'website' => 'الصفحة',
+    'experience' => 'سنين الخبرة',
+    'case' => 'الحالات الكلية',
+    'success' => 'نسبة النجاح',
+    'smile' => "أبتسامة رسمت",
+
+
+]
+
+?>
