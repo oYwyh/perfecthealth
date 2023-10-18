@@ -1,0 +1,9 @@
+{
+    "workbench.colorCustomizations": {
+        "sideBar.border": "#323035",
+        "statusBar.background": "#19181a",
+        "statusBar.border": "#19181a",
+        "statusBarItem.hoverBackground": "#323035",
+        "statusBarItem.remoteBackground": "#19181a"
+    }
+}
