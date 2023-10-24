@@ -1,48 +1,5 @@
 <x-frontend.layout>
-    <style>
-        .front-main {
-            margin: 0 !important;
-        }
-        <style>
-        .social-btn #social-links {
-            margin: 0 auto;
-            max-width: 40%;
-        }
 
-        #social-links ul {
-            margin-bottom: 0px;
-        }
-
-        .social-btn #social-links ul li {
-            display: inline-block;
-        }
-
-        .social-btn #social-links ul li a {
-            padding: 15px;
-            border: 1px solid #8b8484;
-            margin: 1px;
-            font-size: 20px;
-            color: #000;
-            margin-right: 10px;
-        }
-
-        table #social-links {
-            display: inline-table;
-        }
-
-        table #social-links ul li {
-            display: inline;
-        }
-
-        table #social-links ul li a {
-            padding: 5px;
-            border: 1px solid #8b8484;
-            margin: 1px;
-            font-size: 14px;
-            color: #000;
-            margin-right: 10px;
-        }
-    </style>
     <div class="article">
         <div class="wrapper">
             @if(Session::get('locale') == 'en')
@@ -52,9 +9,9 @@
                 <div class="main-article">
                     <div class="img-box">
                         @if (Storage::exists('public/'. $article->image))
-                            <img src="{{asset('storage/'.$article->image)}}"alt="">
+                            <img src="{{asset('storage/'.$article->image)}}" alt="{{$article->image}}">
                         @else
-                            <img src="{{asset('storage/'.'images/articles/thumbnails/default.png')}}" alt="">
+                            <img src="{{asset('storage/'.'images/articles/thumbnails/default.png')}}" alt="{{$article->image}}">
                         @endif
                     </div>
                     <div class="box">
@@ -102,7 +59,7 @@
                             <ul>
                                 @foreach($tags as $tag)
                                     <li>
-                                        <Link class="link" class="outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
+                                        <Link class="link outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
                                     </li>
                                 @endforeach
                             </ul>
@@ -125,9 +82,9 @@
                 <div class="main-article">
                     <div class="img-box">
                         @if (Storage::exists('public/'. $article->image_ar))
-                            <img src="{{asset('storage/'.$article->image_ar)}}"alt="">
+                            <img src="{{asset('storage/'.$article->image_ar)}}" alt="{{$article->image_ar}}">
                         @else
-                            <img src="{{asset('storage/'.'images/articles/thumbnails/default.png')}}" alt="">
+                            <img src="{{asset('storage/'.'images/articles/thumbnails/default.png')}}" alt="{{$article->image_ar}}">
                         @endif
                     </div>
                     <div class="box">
@@ -181,7 +138,7 @@
                             <ul>
                                 @foreach($tags_ar as $tag)
                                     <li>
-                                        <Link class="link" class="outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
+                                        <Link class="link outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
                                     </li>
                                 @endforeach
                             </ul>

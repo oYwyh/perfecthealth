@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'd6d3db658b2c5e4dbe1044518621fb2c9d441ffd',
+        'reference' => 'ba8210b497ad4d8d5e259b324746c9749b669595',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -463,7 +463,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'd6d3db658b2c5e4dbe1044518621fb2c9d441ffd',
+            'reference' => 'ba8210b497ad4d8d5e259b324746c9749b669595',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -621,6 +621,15 @@
             'install_path' => __DIR__ . '/../maennchen/zipstream-php',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'magentron/laravel-blade-lint' => array(
+            'pretty_version' => '1.0.7',
+            'version' => '1.0.7.0',
+            'reference' => 'c26b7fbf117ef816c4999a4402e1b30fd2f6a2e6',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../magentron/laravel-blade-lint',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'markbaker/complex' => array(
             'pretty_version' => '3.0.2',

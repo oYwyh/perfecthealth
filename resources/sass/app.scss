@@ -546,6 +546,8 @@ Link {
                         svg {
                             max-width:25px;
                             min-width:25px;
+                            max-height:25px;
+                            min-height:25px;
                         }
                     }
                     .gone {
@@ -563,6 +565,8 @@ Link {
                 svg {
                     max-width:30px;
                     max-width: 30px;
+                    max-height:30px;
+                    min-height: 30px;
                 }
 
             }
@@ -1096,7 +1100,10 @@ Link {
                         }
                         .group:nth-child(2){
                             @media (max-width:991px) {
-                                @include column;
+                                @include row;
+                            }
+                            input {
+                                min-width: 100px;
                             }
                         }
                         .title {
@@ -1105,7 +1112,9 @@ Link {
                                 text-align: center;
                             }
                         }
-
+                        &.none {
+                            display: none;
+                        }
                     }
                     .wrapper {
                         @include column;
@@ -2453,11 +2462,19 @@ $menu-height: 50px;
             @media (min-width:767px) {
                 margin-right: 1rem;
             }
+
+            @media (max-width:767px) {
+                gap: 1rem;
+            }
+
             .auth-link {
                 font-size: 18px;
                 font-weight: bold;
                 @media (max-width:767px) {
-                    display: none;
+                    font-size: 25px;
+                    span {
+                        display: none;
+                    }
                 }
             }
 
@@ -2490,6 +2507,7 @@ $menu-height: 50px;
                     margin-top: 0.5rem;
                     line-height: 2;
                     transition: $transition;
+                    text-align: center;
                     &.show {
                         @include column;
                     }
@@ -2517,6 +2535,10 @@ $menu-height: 50px;
                     }
                     #form {
                         transition: $transition;
+                        text-align: center;
+                        button {
+                            text-transform: capitalize;
+                        }
                         &:hover {
                             background-color: #f5f5f5;
                         }
@@ -2535,10 +2557,6 @@ $menu-height: 50px;
                     z-index: 30;
                     top: 0;
                     left: 0;
-                    // background-color: #111;
-                    // background-color: $dashboard-color;
-                    // background: rgba(255, 255, 255, 0.531);
-                    // backdrop-filter: saturate(180%) blur(10px);
                     background-color: white;
                     overflow-x: hidden;
                     transition: 0.5s;
@@ -2546,24 +2564,30 @@ $menu-height: 50px;
                         width: calc(100% - 100px);
                     }
                     .header {
-                        margin: 1rem 0 .5rem 0;
-                        display: flex;
-                        justify-content: flex-end;
+                        @include space-between;
+                        align-items: center;
+                        padding: .5rem 1rem 1rem 1rem;
+                        img {
+                            max-width: 100%;
+                            width: 200px;
+                        }
                         #close {
                             cursor: pointer;
                             svg {
-                                margin-right: 2rem;
                                 max-width: 35px;
+                                min-width: 35px;
                                 max-height: 35px;
+                                min-height: 35px;
                             }
                         }
                     }
                     .wrapper {
                         @include column;
-                        position: relative;
-                        height: calc(100% - 80px);
-                        width: 100%;
                         align-items: flex-start;
+                        position: relative;
+                        height: calc(100% - 100px);
+                        overflow-y: scroll;
+                        width: 100%;
                         .start {
                             @include column;
                             width: 100%;
@@ -2583,29 +2607,35 @@ $menu-height: 50px;
                                         transition: $transition;
                                         max-width: 25px;
                                         max-height: 25px;
+                                        min-width: 25px;
+                                        min-height: 25px;
                                     }
                                     .img {
                                         max-width: 30px !important;
                                         min-width: 30px !important;
                                         width: 30px;
+                                        max-height: 30px !important;
+                                        min-height: 30px !important;
+                                        height: 30px;
                                     }
                                 }
                             }
                         }
                         .end {
                             @include  column;
-                            width: 100%;
                             justify-content: flex-end;
                             align-items: flex-start;
                             gap: 1rem;
-                            padding-top: .5rem;
+                            width: 100%;
                             height: 100%;
                             li {
                                 &.img {
-                                    @include row;
-                                    align-items: center;
-                                    gap: 1rem;
                                     width: 100%;
+                                    .link {
+                                        @include row;
+                                        align-items: center;
+                                        gap: 1rem;
+                                    }
                                     .box {
                                         border-radius: 50%;
                                         border: 1px solid $primary;
@@ -2630,6 +2660,10 @@ $menu-height: 50px;
                                     .link {
                                         svg {
                                             color: red !important;
+                                            min-height: 25px;
+                                            min-width: 25px;
+                                            max-width: 25px;
+                                            max-height: 25px;
                                         }
                                         &:hover {
                                             svg {
@@ -2642,22 +2676,33 @@ $menu-height: 50px;
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
+                                    border: 2px solid $primary;
+                                    border-radius: 6px;
+                                    text-align: center;
+                                    font-weight: 700;
                                     width: 100% !important;
-                                    background-color: $primary;
-                                    padding: 0.5rem 1rem;
-                                    border-radius: 16px;
                                     .link {
-                                        font-size: 25px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        font-size: 18px;
                                         width: 100% !important;
-                                        color: white;
+                                        color: $primary;
+                                        span {
+                                            text-align: center;
+                                        }
                                         svg {
-                                            color: white !important;
+                                            display: none;
+                                            color: $primary !important;
+                                            min-height: 25px;
                                             min-width: 25px;
+                                            max-width: 25px;
+                                            max-height: 25px;
                                         }
                                         &:hover {
                                             background-color: transparent;
                                             svg {
-                                                color: white !important;
+                                                color: $primary !important;
                                             }
                                         }
                                     }
@@ -2678,6 +2723,8 @@ $menu-height: 50px;
                                         font-weight: bold;
                                         max-width: 20px;
                                         min-width: 20px;
+                                        max-height: 20px;
+                                        min-height: 20px;
                                         height: fit-content;
                                     }
                                     &.active {
@@ -2929,7 +2976,7 @@ $menu-height: 50px;
                 position: relative;
                 max-width: 550px;
                 @media (max-width:767px) {
-                    min-width: auto;
+                    min-width: 100%;
                 }
                 .img-box {
                     position: relative;
@@ -3534,6 +3581,10 @@ $menu-height: 50px;
             @include column;
             gap: 2rem;
             margin-top: 2rem;
+            margin-bottom: 5rem;
+            @media (max-width:991px) {
+                margin-bottom: 10rem;
+            }
             .big-box {
                 @include column;
                 justify-content: center ;
@@ -3542,7 +3593,14 @@ $menu-height: 50px;
                     display: grid;
                     grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
                     justify-content: center ;
-                    gap: 2rem;
+                    gap: 4rem;
+                    @media (max-width:1221px) {
+                        gap: 7rem;
+                    }
+                    @media (max-width:991px) {
+                        gap: 12rem;
+                    }
+
                 }
             }
             .box {
@@ -3550,9 +3608,10 @@ $menu-height: 50px;
                 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 min-height: 50vh;
                 .overlay {
+                    position: absolute;
+                    display: flex;
                     justify-content:center;
                     align-items: flex-start;
-                    position: absolute;
                     width: 100%;
                     height: 100%;
                     background-color: rgba(0, 0, 0, 0.429) !important;
@@ -3597,10 +3656,15 @@ $menu-height: 50px;
                     width: 100%;
                     justify-content: center;
                     align-items: center;
-                    border-top-left-radius: 35px;
-                    border-top-right-radius:35px ;
+                    border-radius: 35px;
                     z-index: 10;
                     gap: 1rem;
+                    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                    margin-bottom: -5rem;
+                    @media (max-width:991px) {
+                        margin-bottom: -10rem;
+                    }
+
                     .title {
                         font-size: 25px;
                         font-weight: bold;
@@ -3608,10 +3672,14 @@ $menu-height: 50px;
                     .description {
                         color: light;
                         font-size: 20px;
+                        text-align: center
                     }
                     .tags {
                         @include row;
+                        flex-wrap: wrap;
                         gap: 1rem;
+                        justify-content: center;
+                        padding: .3rem 0;
                     }
                     .btn{
                         display: none;
@@ -3712,6 +3780,7 @@ $menu-height: 50px;
                         gap: 1rem;
                         width: 100%;
                         @media (max-width:991px) {
+                            @include column;
                             width: auto;
                         }
                         .img-box {
@@ -4535,7 +4604,7 @@ $menu-height: 50px;
                 color: $light;
                 padding: 0 !important;
                 margin: 0 !important;
-                @media (max-width:767px) {
+                @media (max-width:991px) {
                     @include column;
                     gap: 1rem;
                     align-items: center;

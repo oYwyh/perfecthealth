@@ -136,7 +136,7 @@
                     <div class="form-box">
                         <div class="title">@lang('titles.delete_acc')</div>
                         <p class="description">@lang('descriptions.delete_acc')</p>
-                        <x-splade-form :action="route('admin.profile.delete-profile')" :default="$admin" method="POST" class="form">
+                        <x-splade-form :action="route('admin.profile.delete-profile')" confirm :default="$admin" method="POST" class="form">
                             <x-splade-input type="hidden" name="id" />
                             <x-splade-submit id="delete">
                                 @lang('buttons.delete_acc')

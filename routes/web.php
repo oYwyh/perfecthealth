@@ -73,7 +73,6 @@ Route::middleware(['splade'])->group(function () {
 
 
     // Localization Routes
-
     Route::get('locale/{lang}',[LocalizationController::class,'setLang'])->name('setLang');
 
     Route::middleware(['guest:web','PreventBackHistory'])->group(function() {

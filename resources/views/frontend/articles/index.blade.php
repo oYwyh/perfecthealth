@@ -62,22 +62,20 @@
                                     @if(Session::get('locale') == 'en')
                                         {{$date}}
                                         @else
-                                        {{ Cache::remember('translation.'.$date, 60, function () use($date) {
-                                            return Stichoza\GoogleTranslate\GoogleTranslate::trans($date, 'ar', 'en');
-                                        }) }}
+                                        {{\google_translate($date,'ar','en')}}
                                     @endif
                                 </div>
                                 <ul class="tags">
                                     @if(Session::get('locale') == 'en')
                                         @foreach(explode(',',$article->tags) as $tag)
                                             <li>
-                                                <Link class="link" class="outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
+                                                <Link class="link outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
                                             </li>
                                         @endforeach
                                     @else
                                         @foreach(explode(',',$article->tags_ar) as $tag)
                                             <li>
-                                                <Link class="link" class="outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
+                                                <Link class="link outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
                                             </li>
                                         @endforeach
                                     @endif

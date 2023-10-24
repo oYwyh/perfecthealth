@@ -239,11 +239,11 @@ class UserController extends Controller
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'date_of_brith' => 'required',
-                'phone'=> 'required|numeric',
-                'gender'=> 'required',
-                'national_id'=> 'required|numeric',
-                'height'=> 'required|numeric',
-                'weight'=> 'required|numeric',
+                'phone'=> 'nullable|numeric',
+                'gender'=> 'nullable',
+                'national_id'=> 'nullable|numeric',
+                'height'=> 'nullable|numeric',
+                'weight'=> 'nullable|numeric',
             ]
         );
         $user = User::find(Auth::user()->id);
@@ -274,8 +274,8 @@ class UserController extends Controller
     public function medical_update(Request $req) {
         $formField = $req->validate(
             [
-                'disease' => 'required',
-                'blood' => 'required',
+                'disease' => 'nullable',
+                'blood' => 'nullable',
             ]
         );
         $user = User::find(Auth::user()->id);

@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\DatabaseBackup' => $baseDir . '/app/Console/Commands/DatabaseBackup.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
@@ -3446,6 +3447,8 @@ return array(
     'Maatwebsite\\Excel\\Validators\\RowValidator' => $vendorDir . '/maatwebsite/excel/src/Validators/RowValidator.php',
     'Maatwebsite\\Excel\\Validators\\ValidationException' => $vendorDir . '/maatwebsite/excel/src/Validators/ValidationException.php',
     'Maatwebsite\\Excel\\Writer' => $vendorDir . '/maatwebsite/excel/src/Writer.php',
+    'Magentron\\BladeLint\\Console\\Commands\\BladeLint' => $vendorDir . '/magentron/laravel-blade-lint/src/Magentron/BladeLint/Console/Commands/BladeLint.php',
+    'Magentron\\BladeLint\\Providers\\ServiceProvider' => $vendorDir . '/magentron/laravel-blade-lint/src/Magentron/BladeLint/Providers/ServiceProvider.php',
     'Masterminds\\HTML5' => $vendorDir . '/masterminds/html5/src/HTML5.php',
     'Masterminds\\HTML5\\Elements' => $vendorDir . '/masterminds/html5/src/HTML5/Elements.php',
     'Masterminds\\HTML5\\Entities' => $vendorDir . '/masterminds/html5/src/HTML5/Entities.php',

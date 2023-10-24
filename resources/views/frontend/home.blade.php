@@ -235,7 +235,7 @@
             </div>
             <div class="box">
                 <i style="color:red;" class="fa-regular fa-heart fa-2x"></i>
-                <span class="number">1000</span>
+                <span class="number">1000+</span>
                 <span class="text">@lang('frontpage.smile')</span>
             </div>
             <div class="box">

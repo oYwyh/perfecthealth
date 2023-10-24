@@ -36,7 +36,7 @@
                                 @if (Session::get('month'))
                                 <x-splade-select :options="$months" name="month"  class="select" placeholder="{{$month}}"/>
                                 @else
-                                <x-splade-select :options="$months" name="month"  class="select" placeholder="Date"/>
+                                <x-splade-select :options="$months" name="month"  class="select" placeholdre="Date"/>
                                 @endif
                             </x-splade-form>
                             <Link class="link" method="POST" href="{{route('admin.total_reset')}}">@lang('titles.reset')</Link>
@@ -113,6 +113,32 @@
                                 <Link class="link" method="POST" href="{{route('admin.doctors_reset')}}">@lang('titles.reset')</Link>
                             </div>
                         </div>
+                        <div class="header mobile none">
+                            <div class="group">
+                                @if (isset($doctors_date))
+                                    <div class="title">
+                                        @if($doctors_date == $carbon->now()->format('Y-m-d'))
+                                            @lang('onDuty')
+                                        @else
+                                            {{$carbon->parse($doctors_date)->format('l')}} @lang('titles.doctors')
+                                        @endif
+                                    </div>
+                                @else
+                                    <div class="title">@lang('titles.onDuty') @lang('titles.doctors')</div>
+                                @endif
+                            </div>
+                            <div class="group">
+                                <form class="form" action="{{route('admin.doctors_date')}}" method="POST">
+                                    @csrf
+                                    @if (isset($doctors_date))
+                                    <input  type="date" name="date" placeholder="{{$doctors_date}} ({{$doctors_date == $carbon->now()->format('Y-m-d') ? 'Today' : $carbon->parse($doctors_date)->format('l') }})" >
+                                    @else
+                                    <input  type="date" name="date" placeholder="Date" >
+                                    @endif
+                                </form>
+                                <Link class="link" method="POST" href="{{route('admin.doctors_reset')}}">@lang('titles.reset')</Link>
+                            </div>
+                        </div>
                         <div class="wrapper">
                             @if (count($doctors) > 0)
                                 @foreach ($doctors as $doctor)
@@ -175,6 +201,33 @@
                                 <Link class="link" method="POST" href="{{route('admin.receptionists_reset')}}">@lang('titles.reset')</Link>
                             </div>
                         </div>
+                        <div class="header mobile none">
+                            <div class="group">
+                                @if (isset($receptionists_date))
+                                    <div class="title">
+                                        {{$receptionists_date}}
+                                        @if($receptionists_date == $carbon->now()->format('Y-m-d'))
+                                            @lang('titles.onDuty')
+                                        @else
+                                            {{ $carbon->parse($receptionists_date)->format('l') }} @lang('titles.receptionists')
+                                        @endif
+                                    </div>
+                                @else
+                                    <div class="title">@lang('titles.onDuty') @lang('titles.receptionists')</div>
+                                @endif
+                            </div>
+                            <div class="group">
+                                <form class="form" action="{{route('admin.receptionists_date')}}" method="POST">
+                                    @csrf
+                                    @if (isset($receptionists_date))
+                                    <input  type="date" name="date" placeholder="{{$receptionists_date}} ({{$receptionists_date == $carbon->now()->format('Y-m-d') ? 'Today' : $carbon->parse($receptionists_date)->format('l') }})" >
+                                    @else
+                                    <input  type="date" name="date" placeholder="Date" >
+                                    @endif
+                                </form>
+                                <Link class="link" method="POST" href="{{route('admin.receptionists_reset')}}">@lang('titles.reset')</Link>
+                            </div>
+                        </div>
                         <div class="wrapper">
                             @if (count($receptionists) > 0)
                                 @foreach ($receptionists as $receptionist)
@@ -212,6 +265,25 @@
             </div>
         </div>
         <x-splade-script>
+
+            const doctorsHeader = document.querySelector('.doctors .header')
+            const doctorsMobileHeader = document.querySelector('.doctors .header.mobile')
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                doctorsHeader.classList.add('none')
+                doctorsMobileHeader.classList.remove('none')
+                doctorsMobileHeader.querySelector('input[type="date"]').onchange = () => {
+                    doctorsMobileHeader.querySelector('form').submit()
+                }
+            }
+            const receptionistsHeader = document.querySelector('.receptionists .header')
+            const receptionistsMobileHeader = document.querySelector('.receptionists .header.mobile')
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                receptionistsHeader.classList.add('none')
+                receptionistsMobileHeader.classList.remove('none')
+                receptionistsMobileHeader.querySelector('input[type="date"]').onchange = () => {
+                    receptionistsMobileHeader.querySelector('form').submit()
+                }
+            }
             let swiper = new Swiper("#swiper", {
                 loop: true,
                 spaceBetween: 10,

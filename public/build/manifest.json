@@ -1,32 +1,29 @@
 {
-  "__commonjsHelpers-725317a4.js": {
-    "file": "assets/_commonjsHelpers-725317a4.js"
-  },
-  "_choices-b4319f5a.js": {
-    "file": "assets/choices-b4319f5a.js",
+  "_choices-f0f5a719.js": {
+    "file": "assets/choices-f0f5a719.js",
     "imports": [
-      "__commonjsHelpers-725317a4.js"
+      "resources/js/app.js"
     ],
     "isDynamicEntry": true
   },
-  "_jodit.min-bd42590e.js": {
-    "file": "assets/jodit.min-bd42590e.js",
+  "_jodit.min-5037c2ee.js": {
+    "file": "assets/jodit.min-5037c2ee.js",
     "imports": [
-      "__commonjsHelpers-725317a4.js"
+      "resources/js/app.js"
     ],
     "isDynamicEntry": true
   },
-  "_nprogress-e771348b.js": {
-    "file": "assets/nprogress-e771348b.js",
+  "_nprogress-32132a0d.js": {
+    "file": "assets/nprogress-32132a0d.js",
     "imports": [
-      "__commonjsHelpers-725317a4.js"
+      "resources/js/app.js"
     ],
     "isDynamicEntry": true
   },
-  "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-4a55bbec.js": {
-    "file": "assets/CompilerErrorMessages-4a55bbec-862555c2.js",
+  "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-6b34f14b.js": {
+    "file": "assets/CompilerErrorMessages-6b34f14b-862555c2.js",
     "isDynamicEntry": true,
-    "src": "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-4a55bbec.js"
+    "src": "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-6b34f14b.js"
   },
   "node_modules/autosize/dist/autosize.esm.js": {
     "file": "assets/autosize.esm-32e303a0.js",
@@ -68,13 +65,40 @@
     "isDynamicEntry": true,
     "src": "node_modules/flatpickr/dist/esm/index.js"
   },
+  "public/images/bg/article.jpg": {
+    "file": "assets/article-7ecfe196.jpg",
+    "src": "public/images/bg/article.jpg"
+  },
+  "public/images/bg/location.jpg": {
+    "file": "assets/location-66d7feec.jpg",
+    "src": "public/images/bg/location.jpg"
+  },
+  "public/images/bg/map_bg.png": {
+    "file": "assets/map_bg-e34be0ad.png",
+    "src": "public/images/bg/map_bg.png"
+  },
+  "public/images/bg/medical_icons.png": {
+    "file": "assets/medical_icons-519a6cca.png",
+    "src": "public/images/bg/medical_icons.png"
+  },
+  "public/images/bg/stats.jpg": {
+    "file": "assets/stats-7c38c5c4.jpg",
+    "src": "public/images/bg/stats.jpg"
+  },
   "resources/js/app.css": {
-    "file": "assets/app-17c1cc0a.css",
+    "file": "assets/app-f8b39beb.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
+    "assets": [
+      "assets/map_bg-e34be0ad.png",
+      "assets/stats-7c38c5c4.jpg",
+      "assets/medical_icons-519a6cca.png",
+      "assets/article-7ecfe196.jpg",
+      "assets/location-66d7feec.jpg"
+    ],
     "css": [
-      "assets/app-17c1cc0a.css"
+      "assets/app-f8b39beb.css"
     ],
     "dynamicImports": [
       "node_modules/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.esm.js",
@@ -84,15 +108,15 @@
       "node_modules/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.esm.js",
       "node_modules/filepond/dist/filepond.esm.js",
       "node_modules/flatpickr/dist/esm/index.js",
-      "_jodit.min-bd42590e.js",
-      "_choices-b4319f5a.js",
+      "_jodit.min-5037c2ee.js",
+      "_choices-f0f5a719.js",
       "node_modules/autosize/dist/autosize.esm.js",
       "node_modules/autosize/dist/autosize.esm.js",
       "node_modules/autosize/dist/autosize.esm.js",
-      "_nprogress-e771348b.js",
-      "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-4a55bbec.js"
+      "_nprogress-32132a0d.js",
+      "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-6b34f14b.js"
     ],
-    "file": "assets/app-39e713ef.js",
+    "file": "assets/app-ace0a94c.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

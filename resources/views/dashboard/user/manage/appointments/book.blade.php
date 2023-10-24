@@ -51,10 +51,11 @@
                             @endforeach
                         </x-splade-group>
                     </div>
-                <p class="note mt-4 text-red-500">@lang('labels.note') : @lang('messages.provide')</p>
-                <x-splade-submit class="mt-4" style="width:100%;">
-                    @lang('buttons.book')
-                </x-splade-submit>
+                    <p class="note mt-4 text-red-500">@lang('labels.note') : @lang('messages.provide')</p>
+                    <x-splade-submit class="mt-4" style="width:100%;">
+                        @lang('buttons.book')
+                    </x-splade-submit>
+                </div>
             </x-splade-form>
     </x-user.content>
 </x-user.layout>

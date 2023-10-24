@@ -46,7 +46,7 @@
                                     </div>
                                     <p class="btn-text"><b>@lang('auth.facebook')</b></p>
                                 </Link>
-                            </li>
+                            </ul>
                     </div>
                 </div>
             </x-splade-transition>
@@ -112,32 +112,10 @@
                                     </div>
                                     <p class="btn-text"><b>@lang('auth.facebook')</b></p>
                                 </Link>
-                            </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <x-splade-script>
-                    {{-- const confirm = document.querySelector('#confirm')
-                    const role = document.querySelector('#role')
-                    const registerForm = document.querySelector('#register-form')
-                    const userForm = document.querySelector('#user-form')
-                    const note = document.querySelector('#note')
-                    confirm.addEventListener('click',(e) => {
-                        e.preventDefault();
-                        switch(role.value) {
-                            case '':
-                                note.classList.remove('none')
-                            break;
-                            case 'user':
-                            registerForm.style.display = 'none';
-                                userForm.style.display = 'block';
-                            break;
-                            case 'doctor':
-                                console.log(role.value)
-                            break;
-                        }
-                    }) --}}
-                </x-splade-script>
             </x-splade-transition>
         </x-splade-toggle>
     </div>
