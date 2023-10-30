@@ -50,6 +50,7 @@
                         <div class="box">
                             <img src="{{asset('images/waleed.png')}}" alt="">
                             <div class="title">@lang('frontpage.waleed')</div>
+                            <div class="specialty">@lang('frontpage.specialty')</div>
                             <Link class="book" href="{{route('user.manage.appointments.externalBook', ['id'=> '1'])}}">@lang('messages.book')</Link>
                         </div>
                     </div>
@@ -235,7 +236,7 @@
             </div>
             <div class="box">
                 <i style="color:red;" class="fa-regular fa-heart fa-2x"></i>
-                <span class="number">1000+</span>
+                <span class="number">1000</span>
                 <span class="text">@lang('frontpage.smile')</span>
             </div>
             <div class="box">
@@ -516,7 +517,7 @@
                             </div>
                             <span><i class="fab fa-whatsapp"></i></span>
                         </a>
-                        <a href="mailto:waldmed@waleedhaikal.com" class="icon link mail">
+                        <a href="mailto:support@waleedhaikal.com" class="icon link mail">
                             <div class="tooltip">
                                 @lang('frontpage.mail')
                             </div>

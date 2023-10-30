@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Lang;
 use ProtoneMedia\Splade\Facades\SEO;
 use Illuminate\Support\Facades\Route;
 use Intervention\Image\Facades\Image;
+use App\Rules\UniqueEmailAcrossTables;
 use ProtoneMedia\Splade\Facades\Toast;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -253,7 +254,7 @@ class AdminController extends Controller
         $formField = $req->validate(
             [
                 'name' => 'required',
-                'email' => 'required|email|unique:users,email,'.$req->user()->id,
+                'email' => ['required', 'email', new UniqueEmailAcrossTables($req->user()->id)],
                 'image'=> 'nullable',
             ]
         );

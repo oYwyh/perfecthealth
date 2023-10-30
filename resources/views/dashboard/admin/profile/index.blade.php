@@ -1,7 +1,7 @@
 <x-admin.layout>
     <x-admin.content class="bg">
         <div class="profile">
-            <div class="title">Manage Profile</div>
+            <div class="title">@lang('titles.manage') @lang('titles.profile')</div>
             <div class="wrapper">
                 <div class="box">
                     <div class="img-box">

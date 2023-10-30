@@ -160,7 +160,7 @@ class DoctorController extends Controller
     public function create(Request $req) {
         $req->validate([
             'name'=>'required',
-            'email'=>'required|email|unique:doctors,email',
+            'email' => ['required', 'email', new UniqueEmailAcrossTables],
             'phone'=>'required|numeric|unique:doctors,phone',
             'specialty'=>'required',
             'day' => 'required',
@@ -396,7 +396,7 @@ class DoctorController extends Controller
         Toast::title('Profile Updated Successfully!');
         return redirect()->back();
     }
-    public function work_update(Request $req) {
+    public function job_update(Request $req) {
         // $formField = $req->validate(
         //     [
         //         'specialty' => 'required',

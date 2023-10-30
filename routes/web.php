@@ -352,7 +352,7 @@ Route::middleware(['splade'])->group(function () {
                 Route::post('/profile-update',[DoctorController::class,'profile_update'])->name('profile-update');
                 Route::post('/personal-update',[DoctorController::class,'personal_update'])->name('personal-update');
                 Route::post('/social-update',[DoctorController::class,'social_update'])->name('social-update');
-                Route::post('/work-update',[DoctorController::class,'work_update'])->name('work-update');
+                Route::post('/job-update',[DoctorController::class,'job_update'])->name('job-update');
                 Route::post('/pwd-update',[DoctorController::class,'pwd_update'])->name('pwd-update');
                 Route::post('/delete-profile',[DoctorController::class,'delete_profile'])->name('delete-profile');
             });
@@ -372,6 +372,7 @@ Route::middleware(['splade'])->group(function () {
                     Route::post('/save-image', [DoctorAppointmentController::class,'saveImage'])->name('save-image');
                     Route::post('/savePresc', [DoctorAppointmentController::class,'savePresc'])->name('savePresc');
                     Route::post('/app_box_date', [DoctorAppointmentController::class,'app_box_date'])->name('app_box_date');
+                    Route::post('/app_box_reset', [DoctorAppointmentController::class,'app_box_reset'])->name('app_box_reset');
                 });
                 Route::prefix('articles')->name('articles.')->group(function() {
                     Route::get('/',[DoctorArticleController::class,'index'])->name('index');

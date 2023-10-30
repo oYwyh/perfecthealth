@@ -17,33 +17,46 @@
 <x-doctor.layout>
     <x-doctor.content>
         <div class="box">
-            <div class="title">Overview</div>
+            <div class="title">@lang('titles.overview')</div>
         </div>
         <div class="overview doc">
             <div class="main-group">
                 <div class="welcome">
-                    <div class="title">
-                        Hello Dr. {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                    <div class="title capital">
+                        @lang('messages.welcome_back') {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                     </div>
                     <div class="note">
-                        Here Ar Important Something to do
                     </div>
                 </div>
                 <div class="row-group">
                     <div class="chart">
                         <div class="header">
-                            <div class="title sm">
-                                Appointments create date summary
-                            </div>
+                            @if (Session::get('locale') == 'en')
+                                <div class="title_sp sm">
+                                    @lang('titles.app_summ')
+                                </div>
+                                @else
+                                <div class="title_sp ar sm">
+                                    @lang('titles.app_summ')
+                                </div>
+                            @endif
                             <div class="group">
                                 <x-splade-form class="form" action="{{route('doctor.chart_date')}}" method="POST" submit-on-change>
-                                        @if (null !== Session::get('chart_date'))
-                                            <x-splade-select class="fit" :options="['day' => 'Day', 'month' => 'Month' , 'year' => 'Year']" name="date" placeholder="{{Session::get('chart_date')}}" />
-                                        @else
-                                            <x-splade-select class="fit" :options="['day' => 'Day', 'month' => 'Month' , 'year' => 'Year']" name="date" placeholder="Date" />
+                                    @if (null !== Session::get('chart_date'))
+                                        @if (Session::get('locale') == 'en')
+                                            <x-splade-select class="fit capital" :options="['day' => 'Day', 'month' => 'Month' , 'year' => 'Year']" name="date" placeholder="{{Session::get('chart_date')}}" />
+                                            @else
+                                            <x-splade-select class="fit capital" :options="['day' => 'يومي', 'month' => 'شهري' , 'year' => 'سنوي']" name="date" placeholder="{{\google_translate(Session::get('chart_date'))}}" />
                                         @endif
+                                        @else
+                                        @if (Session::get('locale') == 'en')
+                                            <x-splade-select class="fit capital" :options="['day' => 'Day', 'month' => 'Month' , 'year' => 'Year']" name="date" placeholder="Date" />
+                                            @else
+                                            <x-splade-select class="fit capital" :options="['day' => 'يومي', 'month' => 'شهري' , 'year' => 'سنوي']" name="date" placeholder="التاريخ" />
+                                        @endif
+                                    @endif
                                 </x-splade-form>
-                            <Link class="link" method="POST" href="{{route('doctor.chart_reset')}}">Reset</Link>
+                                <Link class="link" method="POST" href="{{route('doctor.chart_reset')}}">@lang('titles.reset')</Link>
 
                             </div>
                         </div>
@@ -53,9 +66,16 @@
                     </div>
                     <div class="appointments">
                         <div class="header">
-                            <div class="title">
-                                Appointments
-                            </div>
+                            @if (Session::get('locale') == 'en')
+                                <div class="title_sp">
+                                    @lang('titles.al')@lang('titles.appointments')
+                                </div>
+                                @else
+                                <div class="title_sp ar">
+                                    @lang('titles.al')@lang('titles.appointments')
+                                </div>
+                            @endif
+                            <div class="group">
                                 <x-splade-form :action="route('doctor.manage.appointments.app_box_date')" method="POST" submit-on-change>
                                     @if (null !== Session::get('date'))
                                         <x-splade-input class="fit" name="date" placeholder="{{Session::get('date')}}" date />
@@ -63,6 +83,8 @@
                                         <x-splade-input class="fit" name="date" placeholder="Date" date />
                                     @endif
                                 </x-splade-form>
+                                <Link class="link" method="POST" href="{{route('doctor.manage.appointments.app_box_reset')}}">@lang('titles.reset')</Link>
+                            </div>
                         </div>
                         <div class="column-group">
                             <?php
@@ -118,7 +140,7 @@
                                 @endforeach
                                 @else
                                 <div class="note text-red-500">
-                                    No appointments were found
+                                    @lang('messages.noData')
                                 </div>
                             @endif
                         </div>
@@ -127,33 +149,44 @@
                 </div>
                 <div class="recent">
                     <div class="header">
-                        <div class="title">
-                            Recent Patient
-                        </div>
+                        @if (Session::get('locale') == 'en')
+                            <div class="title_sp">
+                                @lang('titles.recent') @lang('titles.patients')
+                            </div>
+                            @else
+                            <div class="title_sp ar">
+                                @lang('titles.recent') @lang('titles.patients')
+                            </div>
+                        @endif
                     </div>
                     <table class="table">
                         <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Gender</th>
-                            <th class="md-gone">Blood Type</th>
-                            <th>Settings</th>
+                            <th>@lang('labels.fullname')</th>
+                            <th>@lang('labels.age')</th>
+                            <th class="md-gone">@lang('labels.gender')</th>
+                            <th class="md-gone">@lang('labels.blood')</th>
+                            <th>@lang('labels.settings')</th>
                         </tr>
                         @foreach ($relative_patients as $patient)
                             <tr>
-                                <td>{{$patient->name ? $patient->name : 'Unkown'}}</td>
-                                <td>{{$patient->date_of_brith ? $carbon->now()->diff($patient->date_of_brith)->y : 'Unkown'}}</td>
-                                <td>{{$patient->gender ? $patient->gender : 'Unkown'}}</td>
-                                <td class="md-gone">{{$patient->blood ? $patient->blood : 'Unkown'}}</td>
-                                <td><Link modal href="{{route('doctor.manage.patient.info',['id' => $patient->id])}}">More</Link></td>
+                                <td class="capital">{{$patient->name ? $patient->first_name . ' ' . $patient->last_name : 'Unkown'}}</td>
+                                <td class="capital">{{$patient->date_of_brith ? $carbon->now()->diff($patient->date_of_brith)->y : 'Unkown'}}</td>
+                                <td class="capital">{{$patient->gender ? $patient->gender : 'Unkown'}}</td>
+                                <td class="capital" class="md-gone">{{$patient->blood ? $patient->blood : 'Unkown'}}</td>
+                                <td class="capital"><Link modal href="{{route('doctor.manage.patient.info',['id' => $patient->id])}}">More</Link></td>
                             </tr>
                         @endforeach
-
                     </table>
-
                 </div>
             </div>
             <div class="main-group">
+                <div class="welcome sm">
+                    <div class="title capital">
+                        @lang('messages.welcome_back') {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                    </div>
+                    <div class="note">
+                    </div>
+                </div>
                 <div class="profile">
                     <div class="info">
                         <div class="img-box">
@@ -172,42 +205,55 @@
                             @endif
                         </div>
                         <div class="name">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</div>
-                        <div class="specialty">{{Auth::user()->specialty}}</div>
+                        @if (Session::get('locale') == 'en')
+                        <div class="specialty capital">{{implode(' ',explode('_',Auth::user()->specialty))}}</div>
+                        @else
+                        <div class="specialty capital">{{\google_translate(implode(' ',explode('_',Auth::user()->specialty)))}}</div>
+                        @endif
                     </div>
                     <div class="divider"></div>
                     <div class="summary">
+                        @if (Session::get('locale') == 'en')
+                            <div class="title_sp sm">
+                                @lang('titles.summary')
+                            </div>
+                            @else
+                            <div class="title_sp ar sm">
+                                @lang('titles.summary')
+                            </div>
+                        @endif
                         <div class="group">
                             <div class="box">
                                 <div class="total">{{count($total_appointments)}}</div>
-                                <div class="title">Appointments</div>
+                                <div class="title">@lang('titles.al')@lang('titles.appointments')</div>
                             </div>
                             <div class="box">
                                 <div class="total">{{count($total_appointments)}}</div>
-                                <div class="title">Appointments</div>
+                                <div class="title">@lang('titles.al')@lang('titles.appointments')</div>
                             </div>
                         </div>
                         <div class="group">
                             <div class="box">
                                 <div class="total">{{count($total_appointments)}}</div>
-                                <div class="title">Appointments</div>
+                                <div class="title">@lang('titles.al')@lang('titles.appointments')</div>
                             </div>
                             <div class="box">
                                 <div class="total">{{count($total_appointments)}}</div>
-                                <div class="title">Appointments</div>
+                                <div class="title">@lang('titles.al')@lang('titles.appointments')</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="income">
                     <div class="header">
-                        <div class="title">Incomes</div>
+                        <div class="title">@lang('titles.income')</div>
                         <x-splade-form :action="route('doctor.manage.appointments.app_box_date')" method="POST" submit-on-change>
                             <x-splade-input class="fit" name="date" placeholder="Date" date />
                         </x-splade-form>
                     </div>
                     <div class="box">
                         <p class="note text-red-500">
-                            Coming Soon
+                            @lang('messages.soon')
                         </p>
                     </div>
                 </div>

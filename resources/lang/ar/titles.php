@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'al' => 'ال',
     'profile' => 'الملف الشخصي',
     'you' => 'أنت',
     'reviewTitle' => 'كيف كانت تجربتك؟',
@@ -40,7 +41,6 @@ return [
     'mails' => 'البريد',
     'mail' => 'البريد',
     'files' => 'الملفات',
-
     'resaults' => 'النتائج',
     'diagnosis' => 'تشخيص',
     'prescription' => 'روشتة',
@@ -61,6 +61,10 @@ return [
     'our_doctors' => 'أطباؤنا',
     'dr' => 'الدكتور',
     'avalible' => 'المتاحون',
+    'app_summ' => 'ملخص الحجوزات',
+    'recent' => 'مؤخرا',
+    'income' => 'الدخل',
+    'summary' => 'ملخص',
 ]
 
 ?>

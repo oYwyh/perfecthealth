@@ -6,7 +6,6 @@ return [
     'username' => 'Username',
     'email' => 'Email',
     'fullname' => 'Full Name',
-
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
     'name' => 'Name',
@@ -60,7 +59,6 @@ return [
     'medicine' => 'Medicine',
     'medical' => 'Medical',
     'condition' => 'Condition',
-
     'request' => 'Request',
     'insurance' => 'Insurance',
     'investigations' => 'Investigations',
@@ -97,7 +95,7 @@ return [
     'note' => 'Note',
     'superadmin' => 'Superadmin',
     'avalible' => 'Avalible',
-
+    'settings' => 'settings',
 
 ]
 

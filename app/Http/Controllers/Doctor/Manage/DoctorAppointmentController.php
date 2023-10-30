@@ -156,7 +156,7 @@ class DoctorAppointmentController extends Controller
         return view('dashboard.doctor.manage.appointments.results',compact('patient','appointment'));
     }
     public function patient_info(Request $req) {
-        
+
         $patient = User::find($req->id);
         $carbon = new Carbon();
         return view('dashboard.doctor.manage.patients.info',compact('patient','carbon'));
@@ -179,6 +179,14 @@ class DoctorAppointmentController extends Controller
         Session::put('appointments_patients', $appointments_patients);
         Session::put('date', $req->date);
 
+        Toast::title('Date changed successfuly!');
+        return redirect()->back();
+    }
+    public function app_box_reset(Request $req) {
+        Session::forget('appointments_patients_dictionary');
+        Session::forget('appointments');
+        Session::forget('appointments_patients');
+        Session::forget('date');
         Toast::title('Date changed successfuly!');
         return redirect()->back();
     }

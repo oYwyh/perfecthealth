@@ -89,7 +89,7 @@ use Stichoza\GoogleTranslate\GoogleTranslate;
         return $translatedFields;
     }
 
-    function google_translate($key, $sourceLanguage, $targetLanguage) {
+    function google_translate($key, $sourceLanguage = 'ar', $targetLanguage = 'en') {
         $cacheKey = 'translation.'.$key;
 
         return Cache::remember($cacheKey, 60, function () use ($key, $sourceLanguage, $targetLanguage) {

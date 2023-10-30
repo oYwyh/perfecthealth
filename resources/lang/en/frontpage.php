@@ -11,6 +11,7 @@ return [
     'landginEndBoxThreeTitle' => 'Pediatric Surgery',
     'landginEndBoxThreeDescription' => 'Solution For Evreything',
     'waleed' => 'Dr/ Waleed Haikal',
+    'specialty' => 'General Surgery',
     'servicesTitle' => 'Our Services',
     'articlesTitle' => 'Latest Articles',
     'uniqueTitle' => 'Why Us?',

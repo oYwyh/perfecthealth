@@ -76,8 +76,8 @@ class AdminAdminController extends Controller
         $admin->first_name = $req->first_name;
         $admin->last_name = $req->last_name;
         $admin->email = $req->email;
-        $admin->gender = $req->email;
-        $admin->date_of_brith = $req->email;
+        $admin->gender = $req->gender;
+        $admin->date_of_brith = $req->date_of_brith;
         $admin->phone = $req->phone;
         $admin->password = Hash::make($req->password);
         $save = $admin->save();

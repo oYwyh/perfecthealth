@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'al' => '',
     'profile' => 'Profile',
     'reviewTitle' => 'How was your experience?',
     'you' => 'You',
@@ -60,7 +61,10 @@ return [
     'our' => 'Our',
     'dr' => 'Doctor',
     'avalible' => 'Avalible',
-
+    'app_summ' => 'Appointment Summery',
+    'recent' => 'Recent',
+    'income' => 'Income',
+    'summary' => 'Summary',
 
 ]
 

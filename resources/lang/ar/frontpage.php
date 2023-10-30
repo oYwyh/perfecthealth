@@ -11,6 +11,7 @@ return [
     'landginEndBoxThreeTitle' => 'جراحة اطفال',
     'landginEndBoxThreeDescription' => 'حل لكل شئ',
     'waleed' => 'د/ وليد هيكل',
+    'specialty' => 'جراحة عامة',
     'servicesTitle' => 'خدماتنا',
     'articlesTitle' => 'أحدث المقالات',
     'uniqueTitle' => 'ماذا يميزنا عن الآخرين؟',

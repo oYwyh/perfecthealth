@@ -6,6 +6,7 @@ return [
     'leaveReview' => 'Leave A Review',
     'verify' => 'Verify your account to get full access to our services!',
     'welcome' => 'Welcome To Dr Waleed Haikal Clinic',
+    'welcome_back' => 'Welcome back',
     'book' => 'Book Now',
     'copyright' => 'All Rights Reserved',
     'madeby' => 'Made By',
@@ -24,6 +25,7 @@ return [
     'login_need' => 'Login needed to proceed!',
     'under' => 'The site is still under development, if you found any bugs please contact us via support@waleedhaikal.com',
     'email_recive' => 'Didn\'t recive verfication email? click here to resend!',
+    'soon' => 'Coming soon',
 ]
 
 ?>

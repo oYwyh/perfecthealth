@@ -95,6 +95,7 @@ return [
     'note' => 'ملاحظة',
     'superadmin' => 'جميع الصلاحيات',
     'avalible' => 'المتاح',
+    'settings' => 'الإعدادات',
 
 ]
 

@@ -17,7 +17,7 @@ class UniqueEmailAcrossTables implements Rule
     public function passes($attribute, $value)
     {
         // Add the names of the tables you want to check the email against
-        $tables = ['doctors', 'users', 'admins'];
+        $tables = ['doctors', 'users', 'admins','receptionists'];
 
         foreach ($tables as $table) {
             $query = DB::table($table)->where('email', $value);

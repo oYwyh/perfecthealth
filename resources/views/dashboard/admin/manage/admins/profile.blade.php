@@ -29,11 +29,11 @@
                             @csrf
                             @if ($admin->superadmin == 1)
                                 <span class="mb-2">@lang('labels.superadmin')</span>
-                                <input name="superadmin" id="superadmin" checked class="tgl tgl-ios" value="0" id="cb2" type="checkbox"/>
+                                <input name="superadmin" id="superadmin" checked class="tgl tgl-ios" value="0" type="checkbox"/>
                                 <label class="tgl-btn" for="cb2"></label>
                             @else
                                 <span class="mb-2">@lang('labels.superadmin')</span>
-                                <input name="superadmin" id="superadmin" class="tgl tgl-ios" value="1" id="cb2" type="checkbox"/>
+                                <input name="superadmin" id="superadmin" class="tgl tgl-ios" value="1" type="checkbox"/>
                                 <label class="tgl-btn" for="cb2"></label>
                             @endif
                             <input type="submit" style="display: none;">
@@ -239,9 +239,9 @@
         </div>
         <x-splade-script>
             const inputs = document.querySelectorAll('input')
-
             inputs.forEach(input => {
                 if(input.id == 'superadmin') {
+                        console.log(input);
                     input.nextElementSibling.onclick = () => {
                         input.click();
                         input.parentElement.submit()
