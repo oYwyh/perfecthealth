@@ -100,7 +100,7 @@
         </div>
         <div class="divider"></div>
         <div class="copyright">
-            <div class="rights">@lang('messages.copyright') &copy; <span id="year"></span> </div>
+            <div class="rights">@lang('messages.copyright') &copy; <span id="year"></span> 1.1</div>
             <a href="mailto:support@waleedhaikal.com" class="under">@lang('messages.under')</a>
             <div class="creator">@lang('messages.madeby') <a href="mailto:ywyhinfo@gmail.com">@lang('messages.creator')</a></div>
         </div>

@@ -43,50 +43,45 @@
                         </div>
                     </div>
                     <div class="wrapper">
-                        <div class="container swiper">
-                            <div class="content-swiper" id="swiper">
-                                <div class="swiper-wrapper">
-                                    @foreach($counts as $key => $count)
-                                        <div class="box swiper-slide">
-                                            <div class="group">
-                                                <div class="icon">
-                                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"  width="100.000000pt" height="100.000000pt" viewBox="0 0 100.000000 100.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none"> <path d="M121 886 c-69 -35 -71 -41 -71 -203 0 -153 9 -194 53 -241 25 -27 88 -62 112 -62 12 0 15 -14 15 -75 0 -88 15 -131 59 -168 70 -59 162 -56 226 8 46 47 55 86 55 256 l0 147 29 31 c24 26 37 31 73 31 83 -1 108 -41 108 -178 l0 -100 -37 -7 c-101 -19 -134 -144 -57 -216 36 -34 145 -39 192 -9 41 25 66 81 57 126 -6 35 -57 94 -81 94 -11 0 -14 22 -14 115 0 128 -8 155 -60 198 -66 56 -162 53 -221 -6 -45 -44 -49 -64 -49 -215 0 -75 -5 -154 -10 -174 -14 -50 -52 -78 -105 -78 -37 0 -48 5 -74 35 -29 33 -31 41 -31 109 l0 73 38 11 c21 6 52 26 71 44 59 58 65 79 69 241 l4 147 -34 33 c-40 39 -112 66 -136 50 -21 -13 -28 -59 -11 -79 13 -16 60 -19 76 -3 7 7 15 5 27 -6 25 -25 23 -234 -4 -292 -48 -106 -198 -112 -260 -11 -17 29 -20 51 -20 164 0 105 3 134 15 144 12 10 18 10 29 1 8 -7 27 -11 43 -9 25 3 28 8 31 42 5 61 -29 71 -107 32z m604 -633 c-16 -38 -17 -54 -6 -83 13 -40 -7 -37 -27 3 -10 22 -10 32 2 62 8 19 20 35 27 35 7 0 8 -7 4 -17z m123 0 c31 -28 35 -56 11 -86 -25 -32 -61 -35 -89 -7 -28 28 -25 64 6 89 32 26 46 26 72 4z"/> </g> </svg>
-                                                </div>
-                                                <div class="column">
-                                                    <div class="title">
-                                                        @if(Session::get('locale') == 'en')
-                                                            {{$key}}
-                                                        @else
-                                                            {{Stichoza\GoogleTranslate\GoogleTranslate::trans($key, 'ar', 'en')}}
-                                                        @endif
-                                                    </div>
-                                                    <div class="number">{{$count}}</div>
-                                                </div>
-                                            </div>
-                                            <div class="group">
-                                                <div class="date">
-                                                    @lang('messages.compLastMonth')
-                                                </div>
-                                                <div class="analysis">
-                                                    @if (substr($percentageChanges[$key], 0, 1) == '-')
-                                                    <svg class="decrease" version="1.0" xmlns="http://www.w3.org/2000/svg"  width="40.000000pt" height="31.000000pt" viewBox="0 0 40.000000 31.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,31.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none"> <path d="M56 226 c8 -14 35 -41 59 -61 l44 -35 30 32 30 33 51 -50 c27 -27 53 -46 56 -42 10 10 -90 107 -109 107 -9 0 -25 -13 -36 -29 l-21 -30 -52 50 c-55 53 -78 64 -52 25z"/> <path d="M351 167 c-1 -75 -13 -87 -88 -88 -80 -1 -40 -17 45 -18 l62 -1 -1 58 c-1 83 -17 125 -18 49z"/> </g> </svg>                                         <span class="precent decrease">
-                                                            {{$percentageChanges[$key]}}%
-                                                        </span>
-                                                            @else
-                                                        <svg clas version="1.0" xmlns="http://www.w3.org/2000/svg"  width="300.000000pt" height="193.000000pt" viewBox="0 0 300.000000 193.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,193.000000) scale(0.050000,-0.050000)" fill="#000000" stroke="none"> <path d="M3508 3021 c-381 -14 -434 -30 -458 -142 -24 -109 -34 -108 856 -121 453 -6 826 -13 829 -15 26 -17 -12 -68 -90 -124 -187 -134 -514 -429 -978 -881 -463 -451 -473 -459 -513 -424 -22 20 -146 162 -275 316 -530 634 -505 635 -1203 -17 -739 -689 -1109 -1226 -790 -1146 186 47 927 717 1282 1159 193 240 175 243 411 -67 447 -588 554 -667 738 -543 245 164 1105 1061 1516 1582 29 36 40 -125 57 -849 14 -580 27 -834 43 -850 42 -42 173 3 205 71 44 92 71 919 50 1540 l-18 520 -660 2 c-363 1 -814 -4 -1002 -11z"/> </g> </svg>
-                                                        <span class="precent">
-                                                            {{$percentageChanges[$key]}}%
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
+                        @foreach($counts as $key => $count)
+                            <div class="box swiper-slide">
+                                <div class="group">
+                                    <div class="icon">
+                                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"  width="100.000000pt" height="100.000000pt" viewBox="0 0 100.000000 100.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none"> <path d="M121 886 c-69 -35 -71 -41 -71 -203 0 -153 9 -194 53 -241 25 -27 88 -62 112 -62 12 0 15 -14 15 -75 0 -88 15 -131 59 -168 70 -59 162 -56 226 8 46 47 55 86 55 256 l0 147 29 31 c24 26 37 31 73 31 83 -1 108 -41 108 -178 l0 -100 -37 -7 c-101 -19 -134 -144 -57 -216 36 -34 145 -39 192 -9 41 25 66 81 57 126 -6 35 -57 94 -81 94 -11 0 -14 22 -14 115 0 128 -8 155 -60 198 -66 56 -162 53 -221 -6 -45 -44 -49 -64 -49 -215 0 -75 -5 -154 -10 -174 -14 -50 -52 -78 -105 -78 -37 0 -48 5 -74 35 -29 33 -31 41 -31 109 l0 73 38 11 c21 6 52 26 71 44 59 58 65 79 69 241 l4 147 -34 33 c-40 39 -112 66 -136 50 -21 -13 -28 -59 -11 -79 13 -16 60 -19 76 -3 7 7 15 5 27 -6 25 -25 23 -234 -4 -292 -48 -106 -198 -112 -260 -11 -17 29 -20 51 -20 164 0 105 3 134 15 144 12 10 18 10 29 1 8 -7 27 -11 43 -9 25 3 28 8 31 42 5 61 -29 71 -107 32z m604 -633 c-16 -38 -17 -54 -6 -83 13 -40 -7 -37 -27 3 -10 22 -10 32 2 62 8 19 20 35 27 35 7 0 8 -7 4 -17z m123 0 c31 -28 35 -56 11 -86 -25 -32 -61 -35 -89 -7 -28 28 -25 64 6 89 32 26 46 26 72 4z"/> </g> </svg>
+                                    </div>
+                                    <div class="column">
+                                        <div class="title">
+                                            @if(Session::get('locale') == 'en')
+                                                {{$key}}
+                                            @else
+                                                {{\google_translate($key)}}
+                                            @endif
                                         </div>
-                                    @endforeach
+                                        <div class="number">{{$count}}</div>
+                                    </div>
+                                </div>
+                                <div class="group">
+                                    <div class="date">
+                                        @lang('messages.compLastMonth')
+                                    </div>
+                                    <div class="analysis">
+                                        @if (substr($percentageChanges[$key], 0, 1) == '-')
+                                        <svg class="decrease" version="1.0" xmlns="http://www.w3.org/2000/svg"  width="40.000000pt" height="31.000000pt" viewBox="0 0 40.000000 31.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,31.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none"> <path d="M56 226 c8 -14 35 -41 59 -61 l44 -35 30 32 30 33 51 -50 c27 -27 53 -46 56 -42 10 10 -90 107 -109 107 -9 0 -25 -13 -36 -29 l-21 -30 -52 50 c-55 53 -78 64 -52 25z"/> <path d="M351 167 c-1 -75 -13 -87 -88 -88 -80 -1 -40 -17 45 -18 l62 -1 -1 58 c-1 83 -17 125 -18 49z"/> </g> </svg>                                         <span class="precent decrease">
+                                                {{$percentageChanges[$key]}}%
+                                            </span>
+                                                @else
+                                            <svg clas version="1.0" xmlns="http://www.w3.org/2000/svg"  width="300.000000pt" height="193.000000pt" viewBox="0 0 300.000000 193.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,193.000000) scale(0.050000,-0.050000)" fill="#000000" stroke="none"> <path d="M3508 3021 c-381 -14 -434 -30 -458 -142 -24 -109 -34 -108 856 -121 453 -6 826 -13 829 -15 26 -17 -12 -68 -90 -124 -187 -134 -514 -429 -978 -881 -463 -451 -473 -459 -513 -424 -22 20 -146 162 -275 316 -530 634 -505 635 -1203 -17 -739 -689 -1109 -1226 -790 -1146 186 47 927 717 1282 1159 193 240 175 243 411 -67 447 -588 554 -667 738 -543 245 164 1105 1061 1516 1582 29 36 40 -125 57 -849 14 -580 27 -834 43 -850 42 -42 173 3 205 71 44 92 71 919 50 1540 l-18 520 -660 2 c-363 1 -814 -4 -1002 -11z"/> </g> </svg>
+                                            <span class="precent">
+                                                {{$percentageChanges[$key]}}%
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+                <div class="group">
                     <div class="doctors">
                         <div class="header">
                             <div class="group">
@@ -262,6 +257,7 @@
 
                         </div>
                     </div>
+                </div>
             </div>
         </div>
         <x-splade-script>
@@ -284,7 +280,7 @@
                     receptionistsMobileHeader.querySelector('form').submit()
                 }
             }
-            let swiper = new Swiper("#swiper", {
+            {{-- let swiper = new Swiper("#swiper", {
                 loop: true,
                 spaceBetween: 10,
                 grabCursor: true,
@@ -302,7 +298,7 @@
                     slidesPerView: 2,
                 },
                 },
-            });
+            }); --}}
         </x-splade-script>
         {{-- <x-splade-script>
             const gender = {!! $patientGender !!};

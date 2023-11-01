@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a
+class ComposerStaticInit4cc0b5f6a0de42c082192257913837f8
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -41,6 +41,7 @@ class ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a
         '0c3c22e27afa83be19b4c938f4c6e9ea' => __DIR__ . '/..' . '/spatie/laravel-backup/src/Helpers/functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         'fdb3b5f01b3ed818a713c5450349237f' => __DIR__ . '/../..' . '/app/Helpers/functions.php',
+        '927065194bebef03f880473f2c743e0c' => __DIR__ . '/../..' . '/app/Helpers/functions.js',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -175,6 +176,7 @@ class ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a
         array (
             'Jrean\\UserVerification\\' => 23,
             'Jorenvh\\Share\\' => 14,
+            'Jenssegers\\Date\\' => 16,
         ),
         'I' => 
         array (
@@ -606,6 +608,10 @@ class ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a
         array (
             0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
         ),
+        'Jenssegers\\Date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/date/src',
+        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
@@ -837,6 +843,7 @@ class ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rules\\UniqueEmailAcrossTables' => __DIR__ . '/../..' . '/app/Rules/UniqueEmailAcrossTables.php',
+        'App\\Rules\\lol' => __DIR__ . '/../..' . '/app/Rules/lol.php',
         'App\\Tables\\Admins' => __DIR__ . '/../..' . '/app/Tables/Admins.php',
         'App\\Tables\\Appointments' => __DIR__ . '/../..' . '/app/Tables/Appointments.php',
         'App\\Tables\\Articles' => __DIR__ . '/../..' . '/app/Tables/Articles.php',
@@ -3551,6 +3558,8 @@ class ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a
         'Intervention\\Image\\Point' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Point.php',
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
+        'Jenssegers\\Date\\Date' => __DIR__ . '/..' . '/jenssegers/date/src/Date.php',
+        'Jenssegers\\Date\\DateServiceProvider' => __DIR__ . '/..' . '/jenssegers/date/src/DateServiceProvider.php',
         'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
         'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
         'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
@@ -9039,10 +9048,10 @@ class ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit722b0c972c6644e6b44ff709103e9b6a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4cc0b5f6a0de42c082192257913837f8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4cc0b5f6a0de42c082192257913837f8::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4cc0b5f6a0de42c082192257913837f8::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit4cc0b5f6a0de42c082192257913837f8::$classMap;
 
         }, null, ClassLoader::class);
     }

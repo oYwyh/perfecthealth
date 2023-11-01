@@ -6,15 +6,15 @@
                 <div class="box">
                     <div class="img-box">
                         @if (Auth::user()->image)
-                        @if (Str::startsWith($user->image, ['http://', 'https://']))
-                            <img src="{{$user->image}}" alt="">
-                        @else
-                            @if (Storage::exists('public/'. $user->image))
-                                <img src="{{asset('storage/'.$user->image)}}" alt="">
+                            @if (Str::startsWith($user->image, ['http://', 'https://']))
+                                <img src="{{$user->image}}" alt="">
                             @else
-                                <img src="{{asset('storage/'.'images/profiles/default.jpg')}}" alt="">
+                                @if (Storage::exists('public/'. $user->image))
+                                    <img src="{{asset('storage/'.$user->image)}}" alt="">
+                                @else
+                                    <img src="{{asset('storage/'.'images/profiles/default.jpg')}}" alt="">
+                                @endif
                             @endif
-                        @endif
                         @else
                             <img src="{{asset('storage/'.'images/profiles/default.jpg')}}" alt="">
                         @endif
@@ -124,7 +124,7 @@
                             <p class="description">@lang('descriptions.update_pwd')</p>
                             <x-splade-form background :action="route('user.profile.pwd-update')" :default="$user" method="POST" class="form">
                                 <div class="form-column">
-                                    <label for="current_password">@lang('labels.cpwd')</label>
+                                    <label for="current_password">@lang('labels.currentpwd')</label>
                                     <x-splade-input type="password" class="input" name="current_password"/>
                                 </div>
                                 <div class="form-column">
@@ -139,7 +139,6 @@
                                     @lang('buttons.save')
                                 </x-splade-submit>
                             </x-splade-form>
-
                         </div>
                     @endif
                     <div class="form-box">

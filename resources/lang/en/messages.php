@@ -15,6 +15,7 @@ return [
     'noDocotrs' => 'No Doctors Found!',
     'noData' => 'No Data Found',
     'tagsNote' => 'Add comma to add another tag',
+    'prescNote' => 'Note: hit enter to start new line',
     'disInFront' => 'Appear in front page',
     'compLastMonth' => 'Comparison with last month',
     'verify_access' => 'You need to be verified to access this feature',
@@ -26,6 +27,7 @@ return [
     'under' => 'The site is still under development, if you found any bugs please contact us via support@waleedhaikal.com',
     'email_recive' => 'Didn\'t recive verfication email? click here to resend!',
     'soon' => 'Coming soon',
+    'kin_data' => 'Data of the patient\'s next of kin:',
 ]
 
 ?>

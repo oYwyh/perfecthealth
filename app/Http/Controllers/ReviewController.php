@@ -15,6 +15,7 @@ class ReviewController extends Controller
     }
     public function post(Request $req) {
         $formField = $req->validate([
+            'stars' => 'required',
             'content' => 'required',
         ]);
         $review = new Review();

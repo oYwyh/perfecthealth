@@ -34,6 +34,9 @@
                     Session::forget('uploaded_image_article');
             endif;
         endif;
+        if (Route::currentRouteName() != 'admin.manage.patients.info') :
+            Session::remove('patient_id');
+        endif;
     @endphp
 
         <x-admin.sidebar/>

@@ -12,6 +12,7 @@ import Time from './components/Axios.vue';
 import Clender from './components/Clender.vue';
 import Loader from './components/Loader.vue';
 import Sidebar from './components/Sidebar.vue';
+import Prescription from './components/Prescription.vue';
 import '../../public/html2canvas.min';
 import { createApp } from "vue/dist/vue.esm-bundler.js";
 import { renderSpladeApp, SpladePlugin } from "@protonemedia/laravel-splade";
@@ -44,4 +45,5 @@ createApp({
     .component('rate',Rate)
     .component('cdn',Cdn)
     .component('swup',SwupComp)
+    .component('prescription',Prescription)
     .mount(el);

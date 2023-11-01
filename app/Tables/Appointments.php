@@ -82,7 +82,7 @@ class Appointments extends AbstractTable
                 'pending' => 'pending',
             ])
             ->export()
-            ->paginate(5);
+            ->paginate(20);
         }else if(Route::currentRouteName() == 'doctor.manage.appointments.index'){
             $table->column('id', sortable: true)
             ->column('patient')
@@ -107,7 +107,7 @@ class Appointments extends AbstractTable
                 'pending' => 'pending',
             ])
             ->export()
-            ->paginate(5);
+            ->paginate(20);
 
         }else {
             $table->column('id', sortable: true)
@@ -136,7 +136,7 @@ class Appointments extends AbstractTable
                 'pending' => 'pending',
             ])
             ->export()
-            ->paginate(5);
+            ->paginate(20);
         }
     }
 }

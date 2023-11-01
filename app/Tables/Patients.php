@@ -76,6 +76,6 @@ class Patients extends AbstractTable
             'out_patient' => 'out_patient',
         ])
         ->export()
-        ->paginate(5);
+        ->paginate(20);
     }
 }

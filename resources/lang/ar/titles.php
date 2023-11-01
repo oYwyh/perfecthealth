@@ -41,9 +41,10 @@ return [
     'mails' => 'البريد',
     'mail' => 'البريد',
     'files' => 'الملفات',
-    'resaults' => 'النتائج',
+    'results' => 'النتائج',
     'diagnosis' => 'تشخيص',
     'prescription' => 'روشتة',
+    'prescriptions' => 'الروشتتات',
     'laboratory' => 'معمل',
     'radiology' => 'الأشعة',
     'medicine' => 'الدواء',
@@ -65,6 +66,12 @@ return [
     'recent' => 'مؤخرا',
     'income' => 'الدخل',
     'summary' => 'ملخص',
+    'info' => 'معلومات',
+    'editor' => 'محرر',
+    'in' => 'داخلي',
+    'out' => 'خارجي',
+    'data' => 'بيانات',
+    'form' => 'نموذج',
 ]
 
 ?>

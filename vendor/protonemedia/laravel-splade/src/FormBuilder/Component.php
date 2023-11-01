@@ -15,7 +15,6 @@ abstract class Component
     public string $dottedName = '';
 
     protected string $name = '';
-    protected bool $checked = true;
 
     protected HtmlString|string $label = '';
 
@@ -130,19 +129,6 @@ abstract class Component
     public function disabled(bool $disabled = true): self
     {
         if ($disabled) {
-            $this->attributes['disabled'] = 'disabled';
-        }
-
-        return $this;
-    }
-    /**
-     * Make the field checked
-     *
-     * @return $this
-     */
-    public function checked(bool $checked = true): self
-    {
-        if ($checked) {
             $this->attributes['disabled'] = 'disabled';
         }
 

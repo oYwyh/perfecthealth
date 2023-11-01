@@ -39,6 +39,10 @@ class AuthConroller extends Controller
         return back();
 
     }
+    public function need() {
+        Toast::danger(Lang::get('messages.login_need'));
+        return redirect()->back();
+    }
     public function google() {
         return Socialite::driver('google')->redirect();
     }

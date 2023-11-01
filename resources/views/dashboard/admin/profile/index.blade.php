@@ -117,7 +117,7 @@
                         <p class="description">@lang('descriptions.update_pwd')</p>
                         <x-splade-form background :action="route('admin.profile.pwd-update')" :default="$admin" method="POST" class="form">
                             <div class="form-column">
-                                <label for="current_password">@lang('labels.cpwd')</label>
+                                <label for="current_password">@lang('labels.currentpwd')</label>
                                 <x-splade-input type="password" class="input" name="current_password"/>
                             </div>
                             <div class="form-column">

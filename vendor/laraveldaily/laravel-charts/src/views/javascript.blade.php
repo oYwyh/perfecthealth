@@ -1,4 +1,4 @@
-<x-splade-script>
+<script>
     var ctx = document.getElementById("{{ $options['chart_name'] ?? 'myChart' }}");
     var {{ $options['chart_name'] ?? 'myChart' }} = new Chart(ctx, {
         type: '{{ $options['chart_type'] ?? 'line' }}',
@@ -74,4 +74,4 @@
         @endif
     }
     });
-</x-splade-script>
+</script>

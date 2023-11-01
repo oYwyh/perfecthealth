@@ -18,7 +18,6 @@ class Checkbox extends Component
     {
         return new SpladeCheckbox(
             name: $this->name,
-            checked: $this->checked,
             value: $this->value ?? true,
             label: $this->label,
             help: $this->help,

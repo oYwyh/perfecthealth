@@ -4,7 +4,6 @@
             'rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50'
         )->merge([
             'name' => $name,
-            'checked' => true,
             'value' => $value,
             'type' => 'checkbox',
             'v-model' => $vueModel(),
@@ -18,7 +17,6 @@
         @endif
     </label>
 
-    @includeWhen($help, 'splade::form.checked', ['checked' => $checked])
     @includeWhen($help, 'splade::form.help', ['help' => $help])
     @includeWhen($showErrors, 'splade::form.error', ['name' => $validationKey()])
 </div>

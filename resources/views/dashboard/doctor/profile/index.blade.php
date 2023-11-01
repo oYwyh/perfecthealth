@@ -124,7 +124,7 @@
                             <div class="group">
                                 <div class="form-column">
                                     <label for="specialty">@lang('labels.specialty')</label>
-                                    <x-splade-select name="specialty" :options="$specialties" choices class="input" ></x-splade-select>
+                                    <x-splade-select name="specialty" disabled :options="$specialties" choices class="input" ></x-splade-select>
                                 </div>
                             </div>
                             <div class="form-group column mt-2 mb-2">
@@ -148,106 +148,8 @@
 
                                         $formattedDays[] = $dayName . ' => ' . implode(' , ', $formattedHours);
                                     }
-                                    echo '<p style="text-transform: capitalize;">'. implode(' <br> ', $formattedDays) .'</p>'
+                                    echo '<p style="text-transform: capitalize; font-size:18px;">'. implode(' <br> ', $formattedDays) .'</p>'
                                 @endphp
-                                </div>
-                            </div>
-                            <div class="form-group mt-2 mb-2">
-                                <div class="form-column">
-                                    <label for="linkedin">@lang('labels.days')</label>
-                                    <x-splade-group name="day" id="days" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;">
-                                        <x-splade-checkbox name="day[]" class="check-day" value="sunday"  >
-                                            @lang('labels.sunday')
-                                        </x-splade-checkbox>
-                                        <x-splade-checkbox name="day[]" class="check-day" value="monday" >
-                                            @lang('labels.monday')
-                                        </x-splade-checkbox>
-                                        <x-splade-checkbox name="day[]" class="check-day" value="tuesday">
-                                            @lang('labels.tuesday')
-                                        </x-splade-checkbox>
-                                        <x-splade-checkbox name="day[]" class="check-day" value="wednesday" >
-                                            @lang('labels.wednesday')
-                                        </x-splade-checkbox>
-                                        <x-splade-checkbox name="day[]" class="check-day" value="thursday" >
-                                            @lang('labels.thursday')
-                                        </x-splade-checkbox>
-                                        <x-splade-checkbox name="day[]" class="check-day" value="friday" >
-                                            @lang('labels.friday')
-                                        </x-splade-checkbox>
-                                        <x-splade-checkbox name="day[]" class="check-day" value="saturday" >
-                                            @lang('labels.saturday')
-                                        </x-splade-checkbox>
-                                    </x-splade-group>
-                                </div>
-                            </div>
-                            <div class="group-check mt-2 mb-2" id="sun_check">
-                                <div class="form-column">
-                                    <label for="sun_hours">@lang('labels.sun_hours')</label>
-                                    <x-splade-group name="sun_hour" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;">
-                                        @foreach ($work_hours as $hour)
-                                            <x-splade-checkbox name="sun_hour[]" :show-errors="false" value="{{ $hour }}" label="{{ \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[0])->format('gA') . '-' . \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[1])->format('gA') }}" />
-                                        @endforeach
-                                    </x-splade-group>
-                                </div>
-                            </div>
-                            <div class="group-check mt-2 mb-2" id="mon_check">
-                                <div class="form-column">
-                                    <label for="mon_hours">@lang('labels.mon_hours')</label>
-                                    <x-splade-group name="mon_hour" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;" >
-                                        @foreach ($work_hours as $hour)
-                                            <x-splade-checkbox name="mon_hour[]" :show-errors="false" value="{{ $hour }}" label="{{ \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[0])->format('gA') . '-' . \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[1])->format('gA') }}" />
-                                        @endforeach
-                                    </x-splade-group>
-                                </div>
-                            </div>
-                            <div class="group-check mt-2 mb-2" id="tue_check">
-                                <div class="form-column">
-                                    <label for="tue_hours">@lang('labels.tue_hours')</label>
-                                    <x-splade-group name="tue_hour" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;">
-                                        @foreach ($work_hours as $hour)
-                                            <x-splade-checkbox name="tue_hour[]" :show-errors="false" value="{{ $hour }}" label="{{ \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[0])->format('gA') . '-' . \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[1])->format('gA') }}" />
-                                        @endforeach
-                                    </x-splade-group>
-                                </div>
-                            </div>
-                            <div class="group-check mt-2 mb-2" id="wed_check">
-                                <div class="form-column">
-                                    <label for="wed_hours">@lang('labels.wed_hours')</label>
-                                    <x-splade-group name="wed_hour" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;">
-                                        @foreach ($work_hours as $hour)
-                                            <x-splade-checkbox name="wed_hour[]" :show-errors="false" value="{{ $hour }}" label="{{ \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[0])->format('gA') . '-' . \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[1])->format('gA') }}" />
-                                        @endforeach
-                                    </x-splade-group>
-                                </div>
-                            </div>
-                            <div class="group-check mt-2 mb-2" id="thu_check">
-                                <div class="form-column">
-                                    <label for="thu_hours">@lang('labels.thu_hours')</label>
-                                    <x-splade-group name="thu_hour" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;">
-                                        @foreach ($work_hours as $hour)
-                                            <x-splade-checkbox name="thu_hour[]" :show-errors="false" value="{{ $hour }}" label="{{ \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[0])->format('gA') . '-' . \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[1])->format('gA') }} " />
-                                        @endforeach
-                                    </x-splade-group>
-                                </div>
-                            </div>
-                            <div class="group-check mt-2 mb-2" id="fri_check">
-                                <div class="form-column">
-                                    <label for="fri_hours">@lang('labels.fri_hours')</label>
-                                    <x-splade-group name="fri_hour" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;">
-                                        @foreach ($work_hours as $hour)
-                                            <x-splade-checkbox name="fri_hour[]" :show-errors="false" value="{{ $hour }}" label="{{ \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[0])->format('gA') . '-' . \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[1])->format('gA') }}" />
-                                        @endforeach
-                                    </x-splade-group>
-                                </div>
-                            </div>
-                            <div class="group-check mt-2 mb-2" id="sat_check">
-                                <div class="form-column">
-                                    <label for="sat_hours">@lang('labels.sat_hours')</label>
-                                    <x-splade-group name="sat_hour" style="display: flex; flex-direction: row; gap:1rem; flex-wrap:wrap;">
-                                        @foreach ($work_hours as $hour)
-                                            <x-splade-checkbox name="sat_hour[]" :show-errors="false" value="{{ $hour }}" label="{{ \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[0])->format('gA') . '-' . \Carbon\Carbon::createFromFormat('H',  explode('-', $hour)[1])->format('gA') }}" />
-                                        @endforeach
-                                    </x-splade-group>
                                 </div>
                             </div>
                         </x-splade-form>
@@ -256,6 +158,10 @@
                         <div class="title">@lang('titles.update_pwd')</div>
                         <p class="description">@lang('descriptions.update_pwd')</p>
                         <x-splade-form background :action="route('doctor.profile.pwd-update')" method="POST" class="form">
+                            <div class="form-column">
+                                <label for="current_password">@lang('labels.currentpwd')</label>
+                                <x-splade-input type="password" class="input" name="current_password"/>
+                            </div>
                             <div class="form-column">
                                 <label for="password">@lang('labels.newpwd')</label>
                                 <x-splade-input type="password" class="input" name="password" />

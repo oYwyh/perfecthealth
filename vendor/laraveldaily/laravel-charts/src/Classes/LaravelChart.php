@@ -218,16 +218,16 @@ class LaravelChart
                 }
 
                 $dataset = [
-                    'name' => $this->options['name'] ?? $this->options['chart_title'],
-                    'color' => $condition['color'],
-                    'chart_color' => $this->options['chart_color'] ?? '',
-                    'fill' => $condition['fill'],
-                    'data' => $data,
+                    'name' => $this->options['name'] ?? $this->options['chart_title'], 
+                    'color' => $condition['color'], 
+                    'chart_color' => $this->options['chart_color'] ?? '', 
+                    'fill' => $condition['fill'], 
+                    'data' => $data, 
                     'hidden' => $this->options['hidden'] ?? false,
                     'stacked' => $this->options['stacked'] ?? false,
                 ];
             }
-
+            
             if(!empty($this->options['labels'])) {
                 foreach($this->options['labels'] as $key => $val) {
                     if(array_key_exists($key, $data->toArray())) {
@@ -314,9 +314,9 @@ class LaravelChart
      */
     public function renderChartJsLibrary()
     {
-        return '<x-splade-script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></x-splade-script>';
+        return '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>';
     }
-
+    
     /**
      * @return array
      */

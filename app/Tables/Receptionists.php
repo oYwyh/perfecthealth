@@ -71,6 +71,6 @@ class Receptionists extends AbstractTable
             after: fn () => Toast::info('Users Removed!')
         )
         ->export()
-        ->paginate(5);
+        ->paginate(20);
     }
 }

@@ -16,6 +16,11 @@
         @else
         <div class="main dashboard" id="main">
     @endif
+    @php
+    if (Route::currentRouteName() != 'receptionist.manage.patients.info') {
+            Session::remove('patient_id');
+        }
+    @endphp
         <x-receptionist.sidebar/>
             {{$slot}}
         <x-receptionist.footer/>

@@ -10,6 +10,7 @@ use App\Tables\Appointments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use ProtoneMedia\Splade\Facades\SEO;
 use ProtoneMedia\Splade\Facades\Toast;
 use Illuminate\Support\Facades\Session;
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Storage;
 
 class DoctorAppointmentController extends Controller
 {
+    public function back() {
+        return redirect()->back();
+    }
     public function index() {
         if(Session::get('locale') == 'en') {
             SEO::title('Appointments | Dr Waleed Haikal Clinic')
@@ -46,41 +50,105 @@ class DoctorAppointmentController extends Controller
         $app_id = [
             'app_id' => $req->app_id
         ];
-        $lab = [
-            'lab',
-            'lab2'
-        ];
-        $rad = [
-            'rad'
-        ];
-        $med = [
-            'med'
-        ];
-        return view('dashboard.doctor.manage.appointments.info', compact('patient','app_id','lab','rad','med'));
+        return view('dashboard.doctor.manage.appointments.info', compact('patient','app_id'));
     }
     public function saveInfo(Request $req) {
         $formField = $req->validate([
             'history' => 'required',
             'diagnosis' => 'required',
-            'laboratory' => 'required',
-            'radiology' => 'required',
-            'medicine' => 'required',
+            'laboratory' => 'nullable',
+            'radiology' => 'nullable',
+            'medicine' => 'nullable',
         ]);
-        $laboratory = implode(',',$req->laboratory);
-        $radiology = implode(',',$req->radiology);
-        $medicine = implode(',',$req->medicine);
-        $appointment = Appointment::find($req->app_id);
-        $appointment->history = $req->history;
-        $appointment->diagnosis = $req->diagnosis;
-        $appointment->laboratory = $laboratory;
-        $appointment->radiology = $radiology;
-        $appointment->medicine = $medicine;
-        $appointment->status = 'seen';
-        $appointment->update($formField);
+        if (null != $req->laboratory) {
+            $laboratory = implode(',',$req->laboratory);
+        }else {
+            $laboratory = null;
+        }
+        if (null != $req->radiology) {
+            $radiology = implode(',',$req->radiology);
+        }else {
+            $radiology = null;
+        }
+        if (null != $req->medicine) {
+            $medicine = implode(',',$req->medicine);
+        }else {
+            $medicine = null;
+        }
+        $appointment = [
+            'id' => $req->app_id,
+            'patient_fullname' => $req->first_name . ' ' . $req->last_name,
+            'patient_age' => \getAge($req->date_of_brith),
+            'history' => $req->history,
+            'diagnosis' => $req->diagnosis,
+            'laboratory' => $laboratory,
+            'radiology' => $radiology,
+            'medicine' => $medicine,
+            'lab_img' => null,
+            'rad_img' => null,
+            'med_img' => null,
+        ];
         Session::put('appointment', $appointment);
-        Toast::title('Info Savd Successfuly!')
-        ->autoDismiss(5);
-        return redirect()->route('doctor.manage.appointments.prescription');
+        if (null != $laboratory) {
+            return redirect()->route('doctor.manage.appointments.laboratory');
+        }else if(null != $radiology) {
+            return redirect()->route('doctor.manage.appointments.radiology');
+        }else if(null != $medicine) {
+            return redirect()->route('doctor.manage.appointments.medicine');
+        }else {
+            $appointment = Appointment::find($req->app_id);
+            $appointment->history = $req->history;
+            $appointment->diagnosis = $req->diagnosis;
+            $appointment->laboratory = null;
+            $appointment->radiology = null;
+            $appointment->medicine = null;
+            $appointment->lab_img = null;
+            $appointment->rad_img = null;
+            $appointment->med_img = null;
+            $appointment->status = 'seen';
+            $appointment->save();
+            Session::remove('appointment');
+            Toast::success(Lang::get('toast.appointment_created'));
+            return redirect()->route('doctor.manage.appointments.index');
+            Toast::success(Lang::get('toast.appointment_created'));
+            return redirect()->route('doctor.manage.appointments.index');
+        }
+    }
+    public function laboratory() {
+        if(Session::get('locale') == 'en') {
+            SEO::title('Laboratory Prescription | Dr Waleed Haikal Clinic')
+                ->description('Dr waleed haikal clinic')
+                ->keywords('hms', 'clinic','waleed','haikal','doctor','doctor waleed haikal clinic','عيادة الدكتور وليد هيكل' , 'وليد هيكل', 'دكتور');
+        }else {
+            SEO::title('روشتت المعمل | عيادة الدكتور وليد هيكل')
+                ->description('عيادة الدكتور وليد هيكل')
+                ->keywords('hms', 'clinic','waleed','haikal','doctor','doctor waleed haikal clinic','عيادة الدكتور وليد هيكل' , 'وليد هيكل', 'دكتور');
+        }
+        return view('dashboard.doctor.manage.appointments.prescriptions.laboratory');
+    }
+    public function radiology() {
+        if(Session::get('locale') == 'en') {
+            SEO::title('Radiology Prescription | Dr Waleed Haikal Clinic')
+                ->description('Dr waleed haikal clinic')
+                ->keywords('hms', 'clinic','waleed','haikal','doctor','doctor waleed haikal clinic','عيادة الدكتور وليد هيكل' , 'وليد هيكل', 'دكتور');
+        }else {
+            SEO::title('روشتت الأشعة | عيادة الدكتور وليد هيكل')
+                ->description('عيادة الدكتور وليد هيكل')
+                ->keywords('hms', 'clinic','waleed','haikal','doctor','doctor waleed haikal clinic','عيادة الدكتور وليد هيكل' , 'وليد هيكل', 'دكتور');
+        }
+        return view('dashboard.doctor.manage.appointments.prescriptions.radiology');
+    }
+    public function medicine() {
+        if(Session::get('locale') == 'en') {
+            SEO::title('Medicine Prescription | Dr Waleed Haikal Clinic')
+                ->description('Dr waleed haikal clinic')
+                ->keywords('hms', 'clinic','waleed','haikal','doctor','doctor waleed haikal clinic','عيادة الدكتور وليد هيكل' , 'وليد هيكل', 'دكتور');
+        }else {
+            SEO::title('روشتت الدواء | عيادة الدكتور وليد هيكل')
+                ->description('عيادة الدكتور وليد هيكل')
+                ->keywords('hms', 'clinic','waleed','haikal','doctor','doctor waleed haikal clinic','عيادة الدكتور وليد هيكل' , 'وليد هيكل', 'دكتور');
+        }
+        return view('dashboard.doctor.manage.appointments.prescriptions.medicine');
     }
     public function prescription() {
         if(Session::get('locale') == 'en') {
@@ -96,49 +164,60 @@ class DoctorAppointmentController extends Controller
     }
     public function saveImage(Request $request){
         $img = $request->get('img');
-        $newLab = $request->query('newLab');
+        $newPresc = $request->query('newPresc');
         $section = $request->query('section');
+        // Decode the base64 image data.
         $img = str_replace('data:image/jpeg;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $fileData = base64_decode($img);
-        $fileName = Str::uuid().'.'.'jpeg';
-        $appointment = Appointment::find(Session::get('appointment')->id);
-        if($section == 'prescLab') {
-            $appointment->lab_img = $fileName;
+        // Generate a unique file name for the image.
+        $fileName = Str::uuid() . '.' . 'jpeg';
+        // Get the appointment data from the session.
+        $appointment = Session::get('appointment');
+        // Update the appointment data with the new image and prescription.
+        if ($section == 'prescLab') {
+            $appointment['lab_img'] = 'images/prescriptions/laboratory/'.$fileName;
             Storage::disk('public')->put('images/prescriptions/laboratory/' . $fileName, $fileData);
-            if($newLab != 'undefined') {
-                $appointment->laboratory = $newLab;
-                $appointment->save();
-            }else {
-                $appointment->save();
+            if ($newPresc != 'undefined') {
+                $appointment['laboratory'] = $newPresc;
             }
-        }else if($section == 'prescRad') {
-            $appointment->rad_img = $fileName;
+        } elseif ($section == 'prescRad') {
+            $appointment['rad_img'] = 'images/prescriptions/radiology/'.$fileName;
             Storage::disk('public')->put('images/prescriptions/radiology/' . $fileName, $fileData);
-            if($newLab != 'undefined') {
-                $appointment->radiology = $newLab;
-                $appointment->save();
-            }else {
-                $appointment->save();
+            if ($newPresc != 'undefined') {
+                $appointment['radiology'] = $newPresc;
             }
-        }else {
-            $appointment->med_img = $fileName;
+        } else {
+            $appointment['med_img'] = 'images/prescriptions/medicine/'.$fileName;
             Storage::disk('public')->put('images/prescriptions/medicine/' . $fileName, $fileData);
-            if($newLab != 'undefined') {
-                $appointment->medicine = $newLab;
-                $appointment->save();
-            }else {
-                $appointment->save();
+            if ($newPresc != 'undefined') {
+                $appointment['medicine'] = $newPresc;
             }
         }
-        Toast::title('lol')
-        ->autoDismiss(5);
-        return redirect()->back();
+
+        // Save the updated appointment data back to the session.
+        Session::put('appointment', $appointment);
+    }
+    public function save(Request $req) {
+        $app = $req->session()->get('appointment');
+        $appointment = Appointment::find($app['id']);
+        $appointment->history = $app['history'];
+        $appointment->diagnosis = $app['diagnosis'];
+        $appointment->laboratory = $app['laboratory'];
+        $appointment->radiology = $app['radiology'];
+        $appointment->medicine = $app['medicine'];
+        $appointment->lab_img = $app['lab_img'];
+        $appointment->rad_img = $app['rad_img'];
+        $appointment->med_img = $app['med_img'];
+        $appointment->status = 'seen';
+        $appointment->save();
+        Session::remove('appointment');
+        Toast::success(Lang::get('toast.appointment_created'));
+        return redirect()->route('doctor.manage.appointments.index');
     }
     public function cancle(Request $req) {
         Appointment::destroy($req->id);
-        Toast::info('Appointment Has Been Canceled!')
-        ->autoDismiss(5);
+        Toast::info(Lang::get('toast.appointment_cancled'));
         return redirect()->back();
     }
     public function results(Request $req) {
@@ -179,7 +258,7 @@ class DoctorAppointmentController extends Controller
         Session::put('appointments_patients', $appointments_patients);
         Session::put('date', $req->date);
 
-        Toast::title('Date changed successfuly!');
+        Toast::success(Lang::get('toast.data_change_success'));
         return redirect()->back();
     }
     public function app_box_reset(Request $req) {
@@ -187,7 +266,7 @@ class DoctorAppointmentController extends Controller
         Session::forget('appointments');
         Session::forget('appointments_patients');
         Session::forget('date');
-        Toast::title('Date changed successfuly!');
+        Toast::success(Lang::get('toast.data_change_success'));
         return redirect()->back();
     }
 }

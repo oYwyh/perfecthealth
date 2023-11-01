@@ -17,6 +17,35 @@
         @else
         <div class="main dashboard" id="main">
     @endif
+    @php
+        if(
+            Route::currentRouteName() != 'doctor.manage.appointments.info'
+            && Route::currentRouteName() != 'doctor.manage.appointments.saveInfo'
+            && Route::currentRouteName() != 'doctor.manage.appointments.laboratory'
+            && Route::currentRouteName() != 'doctor.manage.appointments.radiology'
+            && Route::currentRouteName() != 'doctor.manage.appointments.medicine'
+        ) :
+        // dd('public/'. Session::get('appointment')['lab_img']);
+            if (null != Session::get('appointment')):
+                if (null != Session::get('appointment')['lab_img']) {
+                    if (Storage::exists('public/'. Session::get('appointment')['lab_img'])) {
+                        unlink(public_path('storage/'. Session::get('appointment')['lab_img']));
+                    }
+                }
+                if (null != Session::get('appointment')['rad_img']) {
+                    if (Storage::exists('public/'. Session::get('appointment')['rad_img'])) {
+                        unlink(public_path('storage/'. Session::get('appointment')['rad_img']));
+                    }
+                }
+                if (null != Session::get('appointment')['med_img']) {
+                    if (Storage::exists('public/'. Session::get('appointment')['med_img'])) {
+                        unlink(public_path('storage/'. Session::get('appointment')['med_img']));
+                    }
+                }
+                Session::forget('appointment');
+            endif;
+        endif;
+    @endphp
         <x-doctor.sidebar/>
             {{$slot}}
         <x-doctor.footer/>

@@ -73,6 +73,6 @@ class Services extends AbstractTable
             'false' => 'hidden',
         ])
         ->export()
-        ->paginate(5);
+        ->paginate(20);
     }
 }

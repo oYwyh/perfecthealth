@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
 use ProtoneMedia\Splade\Facades\SEO;
 use App\Rules\UniqueEmailAcrossTables;
 use ProtoneMedia\Splade\Facades\Toast;
@@ -60,8 +61,11 @@ class ReceptionistController extends Controller
         );
         $receptionist = Receptionist::find(Auth::user()->id);
         $oldImage = $receptionist->image; // get the old image path
-
         // check if the user did not change anything
+        if ($formField['name'] == $receptionist->name && $formField['email'] == $receptionist->email && (!$req->hasFile('image') || $oldImage == $formField['image'])) {
+            Toast::danger(Lang::get('toast.data_changed'));
+            return redirect()->back();
+        }
         $oldImage = $receptionist->image; // get the old image path
         if($req->hasFile('image')) {
             $image = $req->file('image');
@@ -77,7 +81,7 @@ class ReceptionistController extends Controller
             unset($formField['image']); // remove 'image' from the form fields if no new image is uploaded
         }
         $receptionist->update($formField);
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
         return redirect()->back();
     }
     public function personal_update(Request $req) {
@@ -101,7 +105,7 @@ class ReceptionistController extends Controller
             }
         }
         if (!$isDataChanged) {
-            Toast::danger('You can\'t update your data without changing it!');
+            Toast::danger(Lang::get('toast.data_changed'));
             return redirect()->back();
         }
         $receptionist->first_name = $req->first_name;
@@ -111,11 +115,12 @@ class ReceptionistController extends Controller
         $receptionist->gender = $req->gender;
         $receptionist->national_id = $req->national_id;
         $receptionist->update($formField);
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
+
         return redirect()->back();
     }
     public function work_update(Request $req) {
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
         return redirect()->back();
     }
     public function medical_update(Request $req) {
@@ -134,13 +139,13 @@ class ReceptionistController extends Controller
             }
         }
         if (!$isDataChanged) {
-            Toast::danger('You can\'t update your data without changing it!');
+            Toast::danger(Lang::get('toast.data_changed'));
             return redirect()->back();
         }
         $receptionist->disease = $req->disease;
         $receptionist->blood = $req->blood;
         $receptionist->update($formField);
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
         return redirect()->back();
     }
     public function pwd_update(Request $req) {
@@ -160,14 +165,18 @@ class ReceptionistController extends Controller
         $receptionist->password = Hash::make($req->input('password'));
         $receptionist->save();
 
-        Toast::title('Password Updated Successfully!');
+        Toast::success(Lang::get('toast.pwd_update'));
         return redirect()->back();
     }
     public function delete_profile(Request $req) {
         $receptionist = Receptionist::find($req->id);
+        $oldImage = $receptionist->image;
+        if($oldImage && file_exists(public_path('storage/'.$oldImage))) {
+            unlink(public_path('storage/'.$oldImage));
+        }
         $receptionist->delete();
         Auth::logout();
-        Toast::title('Account has been deleted succesfuly, sad to see you go :(');
+        Toast::info(Lang::get('toast.acc_deleted'));
         return redirect()->route('home');
     }
 

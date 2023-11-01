@@ -72,7 +72,7 @@ class Admins extends AbstractTable
                 after: fn () => Toast::info('Admins Removed!')
             )
             ->export()
-            ->paginate(5);
+            ->paginate(20);
 
             // ->searchInput()
             // ->selectFilter()

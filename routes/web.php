@@ -7,14 +7,16 @@ use App\Http\Controllers\AuthConroller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\WordController;
+use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Doctor\DoctorController;
 
+use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Admin\Manage\AdminMailController;
 use App\Http\Controllers\Admin\Manage\AdminUserController;
 use App\Http\Controllers\Admin\Manage\AdminAdminController;
@@ -24,14 +26,13 @@ use App\Http\Controllers\Admin\Manage\AdminArticleController;
 use App\Http\Controllers\Admin\Manage\AdminPatientController;
 use App\Http\Controllers\Admin\Manage\AdminServiceController;
 use App\Http\Controllers\Receptionist\ReceptionistController;
+use App\Http\Controllers\Admin\Manage\AdminInsuranceController;
+use App\Http\Controllers\Doctor\Manage\DoctorArticleController;
 use App\Http\Controllers\User\Manage\UserAppointmentController;
 use App\Http\Controllers\Admin\Manage\AdminNewsletterController;
 use App\Http\Controllers\Admin\Manage\AdminAppointmentController;
-use App\Http\Controllers\Admin\Manage\AdminInsuranceController;
 use App\Http\Controllers\Admin\Manage\AdminReceptionistController;
 use App\Http\Controllers\Doctor\Manage\DoctorAppointmentController;
-use App\Http\Controllers\Doctor\Manage\DoctorArticleController;
-use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Receptionist\Manage\ReceptionistPatientController;
 
 // use App\Http\Controllers\Admin\Manage\AdminServiceController;
@@ -70,15 +71,16 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/reset/password/{token}', [AuthConroller::class, 'get_token'])->name('reset.password.req');
     Route::get('social-share', [App\Http\Controllers\SocialMediaShareController::class, 'index']);
     Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
+    Route::post('/back', [GlobalController::class, 'back'])->name('back');
 
 
     // Localization Routes
     Route::get('locale/{lang}',[LocalizationController::class,'setLang'])->name('setLang');
-
     Route::middleware(['guest:web','PreventBackHistory'])->group(function() {
         Route::prefix('auth')->name('auth.')->group(function() {
-            Route::post('/logout', [AuthConroller::class, 'logout'])->name('logout');
             Route::post('/', [AuthConroller::class, 'auth'])->name('index');
+            Route::post('/need', [AuthConroller::class, 'need'])->name('need');
+            Route::post('/logout', [AuthConroller::class, 'logout'])->name('logout');
                 Route::prefix('google')->name('google.')->group(function() {
                     Route::get('/', [AuthConroller::class, 'google'])->name('index');
                     Route::get('/redirect', [AuthConroller::class, 'googleRedirect'])->name('redirect');
@@ -303,6 +305,8 @@ Route::middleware(['splade'])->group(function () {
                 });
                 Route::prefix('reviews')->name('reviews.')->group(function() {
                     Route::get('/',[AdminReviewController::class,'index'])->name('index');
+                    Route::get('/add',[AdminReviewController::class,'add'])->name('add');
+                    Route::post('/create',[AdminReviewController::class,'create'])->name('create');
                     Route::get('verify-form',[AdminReviewController::class,'verify_form'])->name('verify-form');
                     Route::get('verify',[AdminReviewController::class,'verify'])->name('verify');
                     Route::post('/delete',[AdminReviewController::class,'delete'])->name('delete');
@@ -346,7 +350,6 @@ Route::middleware(['splade'])->group(function () {
             Route::post('logout',[DoctorController::class,'logout'])->name('logout');
             Route::post('/chart_date', [DoctorController::class,'chart_date'])->name('chart_date');
             Route::post('/chart_reset', [DoctorController::class,'chart_reset'])->name('chart_reset');
-
             Route::prefix('profile')->name('profile.')->group(function() {
                 Route::get('/',[DoctorController::class,'profile'])->name('index');
                 Route::post('/profile-update',[DoctorController::class,'profile_update'])->name('profile-update');
@@ -356,8 +359,6 @@ Route::middleware(['splade'])->group(function () {
                 Route::post('/pwd-update',[DoctorController::class,'pwd_update'])->name('pwd-update');
                 Route::post('/delete-profile',[DoctorController::class,'delete_profile'])->name('delete-profile');
             });
-
-
             Route::prefix('manage')->name('manage.')->group(function() {
                 Route::prefix('patient')->name('patient.')->group(function() {
                     Route::get('/info',[DoctorAppointmentController::class,'patient_info'])->name('info');
@@ -367,12 +368,16 @@ Route::middleware(['splade'])->group(function () {
                     Route::get('/info',[DoctorAppointmentController::class,'info'])->name('info');
                     Route::get('/results',[DoctorAppointmentController::class,'results'])->name('results');
                     Route::post('/saveinfo',[DoctorAppointmentController::class,'saveInfo'])->name('saveInfo');
+                    Route::get('/laboratory',[DoctorAppointmentController::class,'laboratory'])->name('laboratory');
+                    Route::get('/radiology',[DoctorAppointmentController::class,'radiology'])->name('radiology');
+                    Route::get('/medicine',[DoctorAppointmentController::class,'medicine'])->name('medicine');
                     Route::get('/prescription',[DoctorAppointmentController::class,'prescription'])->name('prescription');
                     Route::post('/cancle',[DoctorAppointmentController::class,'cancle'])->name('cancle');
                     Route::post('/save-image', [DoctorAppointmentController::class,'saveImage'])->name('save-image');
-                    Route::post('/savePresc', [DoctorAppointmentController::class,'savePresc'])->name('savePresc');
+                    Route::get('/save', [DoctorAppointmentController::class,'save'])->name('save');
                     Route::post('/app_box_date', [DoctorAppointmentController::class,'app_box_date'])->name('app_box_date');
                     Route::post('/app_box_reset', [DoctorAppointmentController::class,'app_box_reset'])->name('app_box_reset');
+                    Route::post('/back', [DoctorAppointmentController::class,'back'])->name('back');
                 });
                 Route::prefix('articles')->name('articles.')->group(function() {
                     Route::get('/',[DoctorArticleController::class,'index'])->name('index');

@@ -158,6 +158,8 @@ class UserAppointmentController extends Controller
         $appointment->patient = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $appointment->doctor_id = $doctor->id;
         $appointment->doctor = $doctor->first_name . ' ' . $doctor->last_name;
+        $appointment->day = date('Y-m-d', strtotime($req->date));
+        $appointment->hour = date('g:i A', strtotime($req->date));
         $appointment->history = '';
         $appointment->diagnosis = '';
         $appointment->laboratory = '';

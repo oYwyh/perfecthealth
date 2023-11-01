@@ -131,7 +131,8 @@
                                                     @if ($app->status == 'seen')
                                                         <Link href="{{route('doctor.manage.appointments.results',['patient_id' => $patient->id, 'app_id'=>$app->id])}}" class="note font-normal italic ">Finished</Link>
                                                     @else
-                                                        {{ date('g:i A', strtotime('2023-09-11T11:00:00')) }}
+                                                        {{-- {{ date('g:i A', strtotime($app->date)) }} --}}
+                                                        {{$app->hour}}
                                                     @endif
                                                 </div>
                                             </div>
@@ -170,7 +171,7 @@
                         @foreach ($relative_patients as $patient)
                             <tr>
                                 <td class="capital">{{$patient->name ? $patient->first_name . ' ' . $patient->last_name : 'Unkown'}}</td>
-                                <td class="capital">{{$patient->date_of_brith ? $carbon->now()->diff($patient->date_of_brith)->y : 'Unkown'}}</td>
+                                <td class="capital">{{$patient->date_of_brith ? \getAge($patient->date_of_brith) : 'Unkown'}}</td>
                                 <td class="capital">{{$patient->gender ? $patient->gender : 'Unkown'}}</td>
                                 <td class="capital" class="md-gone">{{$patient->blood ? $patient->blood : 'Unkown'}}</td>
                                 <td class="capital"><Link modal href="{{route('doctor.manage.patient.info',['id' => $patient->id])}}">More</Link></td>

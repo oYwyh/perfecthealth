@@ -3,35 +3,63 @@
         <div class="wrapper info">
             <x-splade-toggle>
                 <div class="title">
-                    Info
+                    @if (Session::get('loacle') == 'en')
+                    @lang('titles.patient') @lang('titles.info')
+                    @else
+                    @lang('titles.info') @lang('titles.al')@lang('titles.patient')
+                    @endif
                 </div>
                 <div class="toggle mb-4">
                     <ul>
-                        <li  @click.prevent="setToggle(false)">Patient</li>
-                        <li  @click.prevent="setToggle(true)">Diagnosis</li>
+                        <li  @click.prevent="setToggle(false)">@lang('titles.patient')</li>
+                        <li  @click.prevent="setToggle(true)">@lang('titles.diagnosis')</li>
                     </ul>
                 </div>
                 <x-splade-transition show="!toggled">
-                    <div class="title">Patient</div>
+                    <div class="title">@lang('titles.patient')</div>
                     <x-splade-form :default="$patient">
                         <div class="row-group">
-                            <x-splade-input name="name" class="input" disabled label="Patient Name" />
-                            <x-splade-input name="phone" class="input" disabled label="Patient Phone Number" />
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.fullname')</label>
+                                <x-splade-input name="first_name" class="input" disabled  />
+                            </div>
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.phone')</label>
+                                <x-splade-input name="phone" class="input" disabled  />
+                            </div>
                         </div>
                         <div class="row-group">
-                            <x-splade-input name="age" class="input" disabled label="Patient Age" />
-                            <x-splade-input name="gender" class="input" disabled label="Patient Gender" />
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.age')</label>
+                                <x-splade-input name="age" class="input" disabled  />
+                            </div>
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.gender')</label>
+                                <x-splade-input name="gender" class="input" disabled />
+                            </div>
                         </div>
                         <div class="row-group">
-                            <x-splade-input name="blood" class="input" disabled label="Patient Blood Type" />
-                            <x-splade-input name="disease" class="input" disabled label="Patient Chronic Disease" />
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.blood')</label>
+                                <x-splade-input name="blood" class="input" disabled/>
+                            </div>
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.disease')</label>
+                                <x-splade-input name="disease" class="input" disabled />
+                            </div>
                         </div>
                         <div class="row-group">
-                            <x-splade-input name="height" class="input" disabled label="Patient Height" />
-                            <x-splade-input name="weight" class="input" disabled label="Patient Weight" />
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.height')</label>
+                                <x-splade-input name="height" class="input" disabled/>
+                            </div>
+                            <div class="form-column">
+                                <label for="name">@lang('titles.patient') @lang('labels.weight')</label>
+                                <x-splade-input name="weight" class="input" disabled/>
+                            </div>
                         </div>
                         <div class="column-group">
-                            <div class="label">Investigations</div>
+                            <div class="label">@lang('titles.investigations')</div>
                             <div class="row">
                                 @if (isset($patient->investigations))
                                     @foreach (explode(',',$patient->investigations) as $item)
@@ -40,7 +68,7 @@
                                         </div>
                                     @endforeach
                                     @else
-                                    <p class="mt-4 note text-red-500">No investigations foundd</p>
+                                    <p class="mt-4 note text-red-500">@lang('messages.noData')</p>
                                 @endif
                             </div>
                         </div>
@@ -48,7 +76,7 @@
                             <x-splade-input name="insurance" class="input" disabled label="Insurance company" />
                         </div>
                         <div class="column-group">
-                            <div class="label">Insurance Card</div>
+                            <div class="label">@lang('titles.insurance') @lang('titles.card')</div>
                             <div class="row">
                                 @if (isset($patient->insurance_card))
                                 @foreach (explode(',',$patient->insurance_card) as $item)
@@ -57,7 +85,7 @@
                                     </div>
                                 @endforeach
                                 @else
-                                <p class="mt-4 note text-red-500">No insurance_card foundd</p>
+                                <p class="mt-4 note text-red-500">@lang('messages.noData')</p>
                             @endif
                             </div>
                         </div>
@@ -77,21 +105,43 @@
                 </x-splade-transition>
                 <x-splade-transition show="toggled">
                     <div class="diagnosis">
-                        <div class="title" style="font-size: 30px; margin-top:1rem;">Doctor Diagnosis</div>
-                        <x-splade-form :action="route('doctor.manage.appointments.saveInfo')" :default="$app_id">
+                        @if (Session::get('locale') == 'en')
+                            <div class="title" style="font-size: 30px; margin-top:1rem;">@lang('titles.doctor') @lang('titles.diagnosis')</div>
+                            @else
+                            <div class="title" style="font-size: 30px; margin-top:1rem;">@lang('titles.diagnosis') @lang('titles.al')@lang('titles.doctor')</div>
+                        @endif
+                        <x-splade-form  :action="route('doctor.manage.appointments.saveInfo',['app_id' => $app_id['app_id'] ])" :default="$patient">
                             <div class="form-group">
-                                <x-splade-input class="input" name="app_id" style="display: none;"/>
+                                <x-splade-input name="first_name" class="input" disabled type="hidden"  />
+                                <x-splade-input name="last_name" class="input" disabled type="hidden"  />
+                                <x-splade-input name="date_of_brith" class="input" disabled type="hidden"  />
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-column">
+                                    <label for="name">@lang('labels.history')</label>
+                                    <x-splade-textarea class="input" name="history" autosize  />
+                                </div>
                             </div>
                             <div class="form-group">
-                                <x-splade-textarea class="input" name="history" autosize label="History" />
+                                <div class="form-column">
+                                    <label for="name">@lang('labels.diagnosis')</label>
+                                    <x-splade-input class="input" name="diagnosis"  />
+                                </div>
+                                <div class="form-column">
+                                    <label for="name">@lang('labels.laboratory')</label>
+                                    <x-splade-select class="input" name="laboratory" id="lab" :options="$laboratory"  choices multiple />
+                                </div>
                             </div>
                             <div class="form-group">
-                                <x-splade-input class="input" name="diagnosis" label="Diagnosis" />
-                                <x-splade-select class="input" name="laboratory" id="lab" :options="$lab" label="Laboratory Request" choices multiple />
-                            </div>
-                            <div class="form-group">
-                                <x-splade-select class="input" name="radiology" id="rad" :options="$rad" label="Radiology Request" choices multiple />
-                                <x-splade-select class="input" name="medicine" id="med" :options="$med" label="Medicine Request" choices multiple />
+                                <div class="form-column">
+                                    <label for="name">@lang('labels.radiology')</label>
+                                    <x-splade-select class="input" name="radiology" id="rad" :options="$radiology" choices multiple />
+                                </div>
+                                <div class="form-column">
+                                    <label for="name">@lang('labels.medicine')</label>
+                                    <x-splade-select class="input" name="medicine" id="med" :options="$medicine" choices multiple />
+                                </div>
                             </div>
                             {{-- <div class="eyes">
                                 <div class="wrapper">

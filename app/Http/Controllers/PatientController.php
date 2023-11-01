@@ -6,12 +6,14 @@ use Mpdf\Mpdf;
 use App\Models\Patient;
 use Gufy\PdfToHtml\Pdf;
 use setasign\Fpdi\Fpdi;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Mpdf\Output\Destination;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Style\Font;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Lang;
 use ProtoneMedia\Splade\Facades\Toast;
 use Illuminate\Support\Facades\Session;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -23,10 +25,9 @@ class PatientController extends Controller
             [
                 'name' => 'required',
                 'phone' => 'required',
-                'phone' => 'required',
             ]
             ));
-        Toast::title('Patient Updated Successfuly!')
+        Toast::success('Patient Updated Successfuly!')
         ->autoDismiss(5);
         return redirect()->route('admin.manage.admins.index');
     }
@@ -103,7 +104,7 @@ class PatientController extends Controller
         $templateProcessor->setValue('relative_another_phone', $patient->relative_another_phone);
         $templateProcessor->setValue('lol', $patient->empty);
         $templateProcessor->setValue('empty', $patient->empty);
-        $docName = $patient->name.'-'.date('Y-m-d-H-i-s');
+        $docName = time() . '_' . Str::random(10) . '_' . uniqid();
         $newDocumentPath = 'word/patient_forms/'. $docName.'.docx';
         $templateProcessor->saveAs($newDocumentPath);
         $relative_path = 'word/patient_forms/'.$docName.'.docx';
@@ -114,23 +115,21 @@ class PatientController extends Controller
         $objWriter->save('temp/temp.html');
         $htmlContent = file_get_contents('temp/temp.html');
         $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'A4']);
-
         $mpdf->autoScriptToLang = true;
         $mpdf->autoLangToFont = true;
         $mpdf->WriteHTML($htmlContent);
         $mpdf->Output(public_path('pdf/patient_forms/'.$docName.'.pdf'), Destination::FILE);
         $patient->patient_form = 'pdf/patient_forms/'.$docName.'.pdf';
-        $save = $patient->save();
-        if($save) {
-            Toast::title('Patient Registered Successfuly!')
-            ->autoDismiss(5);
-            Session::put('patient', $patient);
-            Session::put('word','word/patient_forms/'.$docName.'.docx');
-            return redirect()->back();
+        $patient->save();
+        Toast::success(Lang::get('toast.acc_register'));
+        Session::put('patient', $patient);
+        Session::put('word','word/patient_forms/'.$docName.'.docx');
+        Session::put('patient_id', $patient->id);
+        $route = $req->route;
+        if ($route == 'admin.manage.patients.add') {
+            return redirect()->route('admin.manage.patients.info');
         }else {
-            Toast::danger('Patient Registered Failed!')
-            ->autoDismiss(5);
-            return redirect()->back();
+            return redirect()->route('receptionist.manage.patients.info');
         }
     }
     public function createOut(Request $req) {
@@ -152,21 +151,19 @@ class PatientController extends Controller
         $patient->address = $req->address;
         $patient->national_id = $req->national_id;
         $patient->type = 'out_patient';
-        $save = $patient->save();
-
-        if($save) {
-            Toast::title('Patient Registered Successfuly!')
-            ->autoDismiss(5);
-            return redirect()->back();;
+        $patient->save();
+        Session::put('patient_id', $patient->id);
+        Toast::success(Lang::get('toast.acc_register'));
+        $route = $req->route;
+        if ($route == 'admin.manage.patients.add') {
+            return redirect()->route('admin.manage.patients.info');
         }else {
-            Toast::danger('Patient Registered Failed!')
-            ->autoDismiss(5);
-            return redirect()->back();
+            return redirect()->route('receptionist.manage.patients.info');
         }
     }
     public function adminDelete(Request $req) {
         Patient::find($req->id)->delete();
-        Toast::success('Patient Removed Successfuly!');
+        Toast::success(Lang::get('toast.acc_register'));
         return redirect()->back();
     }
 }

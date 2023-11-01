@@ -79,6 +79,6 @@ class Articles extends AbstractTable
             '0' => 'false',
         ])
         ->export()
-        ->paginate(5);
+        ->paginate(20);
     }
 }

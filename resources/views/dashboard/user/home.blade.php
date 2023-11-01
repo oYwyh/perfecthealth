@@ -151,14 +151,7 @@
                                         @php
                                             $full_name = $doctor->first_name . ' ' . $doctor->last_name
                                         @endphp
-                                        @if (Session::get('locale') == 'en')
                                             @lang('titles.dr') {{$full_name}}
-                                        @else
-                                            @lang('titles.dr')
-                                                {{ Cache::remember('translation.'.$full_name, 60, function () use($full_name) {
-                                                    return Stichoza\GoogleTranslate\GoogleTranslate::trans($full_name, 'ar', 'en');
-                                                }) }}
-                                        @endif
                                     </div>
                                     <div class="special">
                                         @php
@@ -167,9 +160,7 @@
                                         @if (Session::get('locale') == 'en')
                                             {{$specialty}}
                                         @else
-                                            {{ Cache::remember('translation.'.$specialty, 60, function () use($specialty) {
-                                                return Stichoza\GoogleTranslate\GoogleTranslate::trans($specialty, 'ar', 'en');
-                                            }) }}
+                                            {{\google_translate($specialty)}}
                                         @endif
                                     </div>
                                 </div>

@@ -67,6 +67,6 @@ class Mails extends AbstractTable
                 after: fn () => Toast::info('Mail Removed!')
             )
             ->export()
-            ->paginate(5);
+            ->paginate(20);
     }
 }

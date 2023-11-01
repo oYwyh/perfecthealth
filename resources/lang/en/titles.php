@@ -41,9 +41,10 @@ return [
     'mails' => 'Mails',
     'mail' => 'Mail',
     'files' => 'Files',
-    'resaults' => 'Resaults',
+    'results' => 'Resaults',
     'diagnosis' => 'Diagnosis',
     'prescription' => 'Prescription',
+    'prescriptions' => 'Prescriptions',
     'laboratory' => 'Laboratory',
     'radiology' => 'Radiology',
     'medicine' => 'Medicine',
@@ -65,7 +66,12 @@ return [
     'recent' => 'Recent',
     'income' => 'Income',
     'summary' => 'Summary',
-
+    'info' => 'Info',
+    'editor' => 'editor',
+    'in' => 'In',
+    'out' => 'Out',
+    'data' => 'Data',
+    'form' => 'Form',
 ]
 
 ?>

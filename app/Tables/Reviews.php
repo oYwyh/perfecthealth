@@ -73,6 +73,6 @@ class Reviews extends AbstractTable
             '0' => 'not_verified',
         ])
         ->export()
-        ->paginate(5);
+        ->paginate(20);
     }
 }

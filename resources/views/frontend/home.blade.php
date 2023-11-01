@@ -50,7 +50,6 @@
                         <div class="box">
                             <img src="{{asset('images/waleed.png')}}" alt="">
                             <div class="title">@lang('frontpage.waleed')</div>
-                            <div class="specialty">@lang('frontpage.specialty')</div>
                             <Link class="book" href="{{route('user.manage.appointments.externalBook', ['id'=> '1'])}}">@lang('messages.book')</Link>
                         </div>
                     </div>
@@ -472,12 +471,17 @@
                         @endforeach
                     </div>
                 </div>
-
                 <div class="swiper-pagination" id="swiper-pagination-review"></div>
             </div>
-            <Link class="review primary-btn" id="review-btn"  href="{{route('reviews.index')}}" modal>
-                @lang('messages.leaveReview')
-            </Link>
+            @if(Auth::guard('web')->check())
+                <Link class="review primary-btn" id="review-btn"  href="{{route('reviews.index')}}" modal>
+                    @lang('messages.leaveReview')
+                </Link>
+                @else
+                <Link class="review primary-btn" method="POST" preserve-scroll id="review-btn"  href="{{route('auth.need')}}">
+                    @lang('messages.leaveReview')
+                </Link>
+            @endif
         </div>
     </div>
     <div class="social overlay">

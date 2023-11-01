@@ -29,6 +29,27 @@ class AdminReviewController extends Controller
             ]
         );
     }
+    public function add(Request $req) {
+        return view('dashboard.admin.manage.reviews.add');
+    }
+    public function create(Request $req) {
+        $req->validate([
+            'fullname' => 'required',
+            'username' => 'required',
+            'content' => 'required',
+            'stars' => 'required|numeric|max:5|min:1',
+        ]);
+        $review = new Review();
+        $review->author = null;
+        $review->fullname = $req->fullname;
+        $review->username = $req->username;
+        $review->content = $req->content;
+        $review->stars = $req->stars;
+        $review->verified = 1;
+        $review->save();
+        Toast::success(Lang::get('toast.review_created'));
+        return redirect()->route('admin.manage.reviews.index');
+    }
     public function delete(Request $req) {
         $review = Review::find($req->id);
         $review->delete();
@@ -36,7 +57,7 @@ class AdminReviewController extends Controller
         return redirect()->route('admin.manage.reviews.verify');
     }
     public function verify_form(Request $req) {
-        
+
         return view('dashboard.admin.manage.reviews.verify',
             [
                 'review' => Review::find($req->id),

@@ -38,11 +38,10 @@ use Stichoza\GoogleTranslate\GoogleTranslate;
         ];
     }
 
-    function getAge($date)
-    {
-        // return Carbon::parse($date)->age;
+    function getAge($date) {
         return Carbon::now()->diff($date)->y;
     }
+
     function imageExists($path) {
         // dd($path);
         return file_exists($path) && is_readable($path);
@@ -90,9 +89,11 @@ use Stichoza\GoogleTranslate\GoogleTranslate;
     }
 
     function google_translate($key, $sourceLanguage = 'ar', $targetLanguage = 'en') {
-        $cacheKey = 'translation.'.$key;
+        // $cacheKey = 'translation.'.$key;
 
-        return Cache::remember($cacheKey, 60, function () use ($key, $sourceLanguage, $targetLanguage) {
-            return  Stichoza\GoogleTranslate\GoogleTranslate::trans($key, $sourceLanguage, $targetLanguage);
-        });
+        // return Cache::remember($cacheKey, 60, function () use ($key, $sourceLanguage, $targetLanguage) {
+        //     return  Stichoza\GoogleTranslate\GoogleTranslate::trans($key, $sourceLanguage, $targetLanguage);
+        // });
+        return $key;
     }
+

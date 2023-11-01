@@ -71,7 +71,7 @@ class Doctors extends AbstractTable
                 after: fn () => Toast::info('Doctors Removed!')
             )
             ->export()
-            ->paginate(5);
+            ->paginate(20);
             // ->searchInput()
             // ->selectFilter()
             // ->withGlobalSearch()

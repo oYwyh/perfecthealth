@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 // Variables
 @import '_variables';
 // Mixins
@@ -22,6 +23,11 @@ body {
         }
         .article  {
             direction: rtl;
+        }
+        .prescription {
+            .header {
+                direction: rtl;
+            }
         }
         .landing {
             direction: rtl;
@@ -374,6 +380,10 @@ background: #555;
         @include row;
         gap: 1rem;
         justify-content: center;
+        @media (max-width:776px) {
+            @include column;
+            text-align: center;
+        }
         li {
             background-color: $primary;
             border-radius: 8px;
@@ -1007,20 +1017,27 @@ Link {
                 .total {
                     @include bg;
                     @include column;
+                    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                     flex-wrap: wrap;
                     gap: 1rem;
                     .wrapper {
-                        @include row;
+                        // @include row;
+                        // flex-wrap: wrap;
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
                         justify-content: center;
-                        align-items: center;
-                        flex-wrap: wrap;
                         gap: 1rem;
                         width: 100%;
+                        @media (max-width:767px) {
+                            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                        }
                         .box {
                             @include column;
                             gap: 1rem;
+                            height: fit-content;
+                            width: 100%;
                             background-color: #1f1f1f;
-                            border-radius: 16px;
+                            border-radius: 8px;
                             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                             padding: 1rem;
                             transition: $transition;
@@ -1101,10 +1118,15 @@ Link {
                 .group {
                     @include row;
                     gap: 1rem;
+                    @media (max-width:991px) {
+                        @include column;
+                    }
                 }
                 .doctors,
                 .receptionists {
                     @include bg;
+                    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                    min-height: 30vh;
                     .header {
                         @media (max-width:991px) {
                             @include column;
@@ -1358,7 +1380,6 @@ Link {
                     @include bg;
                     width: 100%;
                     max-height: 48vh;
-                    overflow: hidden;
                     .header {
                         padding-bottom: .5rem
                     }
@@ -1850,20 +1871,31 @@ Link {
             }
         }
         .wrapper.prescription {
-            .toggle {
-                ul {
+            #redirect-form {
+                opacity: 0;
+                top: -10rem;
+                left: 0;
+                position: absolute;
+            }
+            .links {
+                @include space-between;
+                .back,
+                .next {
+                    cursor: pointer;
+                    color: $primary;
+                    font-size: 16px;
+                    padding: .3rem .7rem;
+                    border-radius: 16px;
+                    transition: $transition;
+                    &:hover {
+                        background-color: #4960f54f;
 
-                    @media (max-width:991px) {
-                        @include column;
-                        gap: 0.5rem;
                     }
-
                 }
             }
             .presc {
                 @include column;
                 gap: 2rem;
-                margin-top: 2rem;
                 .row {
                     @include row;
                     justify-content: center;
@@ -1884,42 +1916,63 @@ Link {
                     height: fit-content;
                     width: 100%;
                     img {
+                        max-width: 100%;
                         width: 40%;
+                        min-width: 550px;
+                    }
+                }
+                .presc-box {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    gap: 1rem;
+                    @media (max-width:991px) {
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
                     }
                 }
                 .prescription {
+                    position: relative;
                     border: 1px solid black;
-                    border-radius: 8px;
-                    height: fit-content;
-                    padding: 1rem;
-                    width: 580px;
+                    height: 80vh;
+                    max-height: 80vh;
+                    min-height: 80vh;
+                    width: 550px;
+                    min-width: 550px;
+                    max-width: 550px;
+                    padding: 1.5rem 2rem;
                     @media (max-width:991px) {
                         width: fit-content;
                     }
                     .header {
                         display: flex;
-                        flex-direction: row;
+                        flex-direction: space-between;
+                        direction: rtl;
                         width: 100%;
                         padding-bottom: 1rem;
                         border-bottom: 1px solid black;
-                        padding: 0 1rem 1rem 1rem;
                         .logo {
-                            text-align: center;
-                            display: flex;
-                            text-align: center;
-                            justify-content: flex-end;
-                            align-items: center;
-                            width: fit-content;
+                            max-width: 100%;
                             img {
                                 max-width: 100%;
-                                width: 80%;
                             }
                         }
                         .info {
-                            @include column;
+                            display: flex;
+                            justify-content: flex-end;
+                            width: 100%;
                             gap: 0.5rem;
-                            p {
-                                font-size: 14px;
+                            .wrapper {
+                                @include column;
+                                align-items: flex-start;
+                                border: none;
+                                p {
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                }
+                                span {
+                                    font-weight: normal;
+                                }
                             }
                         }
                     }
@@ -1928,36 +1981,51 @@ Link {
                         flex-direction: column;
                         direction: ltr;
                         padding: 1rem;
+                        .presc-txt {
+                            font-size: 22px;
+                        }
                         .letter {
                             font-family: 'Pacifico', cursive;
+                            font-style: italic;
                         }
                     }
                     .footer {
                         @include column;
-
+                        position: absolute;
+                        bottom: 1rem;
                         justify-content: center;
                         align-items: center;
                         text-align: center;
                         border-top: 1px solid black;
                         padding: 1rem 0 0 0 !important;
                         direction: rtl;
-                        gap: 1rem;
-                        p {
-                            font-size: 14px;
+                        gap: .3rem;
+                        .address {
+                            p {
+                                font-size: 13px;
+                                font-weight: bold;
+                                &:nth-child(1) {
+                                    font-size: 12px;
+                                }
+                            }
                         }
-                        .box {
+                        .info {
                             @include row;
+                            width: 100%;
                             justify-content: space-between;
                             gap: 2rem;
                             p {
-                                font-size: 12px !important;
-                                font-weight: normal;
+                                font-size:16px !important;
+                                font-weight: bold;
                             }
                         }
                     }
                 }
                 .editor {
                     width: 100%;
+                    .column-group {
+                        margin-top: 0;
+                    }
                 }
                 #saveBtn,
                 #printBtn {
@@ -1999,6 +2067,52 @@ Link {
                             background-color: $btnHover;
                         }
                     }
+                }
+            }
+        }
+        .wrapper.results {
+            .title {
+                font-size: 30px;
+                margin-bottom: 1rem;
+            }
+            .prescriptions {
+                @include row;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+                flex-wrap: wrap;
+                .presc-box {
+                    @include column;
+                    .title {
+                        font-size:25px;
+                        margin:0;
+                    }
+                }
+                .presc-row {
+                    @include row;
+                    gap: 1rem;
+                    @media (max-width:991px) {
+                        @include column;
+                    }
+                    button {
+                        cursor: pointer;
+                        font-size: 18px;
+                        background-color: $primary;
+                        border-radius: 8px;
+                        color: white;
+                        padding: 0 .5rem;
+                        transition: $transition;
+                        @media (max-width:991px) {
+                            padding: .5rem .5rem;
+                        }
+                        &:hover {
+                            background-color: $secondary;
+                        }
+                    }
+                    img {
+                        max-width: 100%
+                    }
+
                 }
             }
         }
@@ -2281,35 +2395,55 @@ Link {
         @include column;
         justify-content: center;
         align-items: center;
-        header {
-            font-size: 22px;
-            color: #dadada;
-            font-weight: 500;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .stars {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-        i {
-            color: #e6e6e6;
-            font-size: 35px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-            &.active {
-            color: #ff9c1a;
+        .box {
+            #review-stars {
+                .group {
+                    > div {
+                        @include row;
+                        gap: 1rem;
+                        align-items: center;
+                        justify-content: center;
+                        input {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            header {
+                font-size: 22px;
+                color: #dadada;
+                font-weight: 500;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .stars {
+                display: flex;
+                align-items: center;
+                gap: 25px;
+            }
+            i {
+                color: #e6e6e6;
+                font-size: 35px;
+                cursor: pointer;
+                transition: color 0.2s ease;
+                &.active {
+                color: #ff9c1a;
+                }
             }
         }
-        form {
+        .form-review {
             @include column;
             gap: 1rem;
             margin-top: 2rem;
             width: 100%;
-            display: none;
-            &.active {
-                display: flex;
+            display: flex;
+            .review-content {
+                display: none;
+                gap: 1rem;
+                width: 100%;
+                &.active {
+                    @include column;
+                }
             }
             textarea {
                 width: 100%;
@@ -2408,10 +2542,7 @@ Link {
     }
 }
 .parent {
-    display: none;
-    &.active {
-        display: block;
-    }
+    display: block;
 }
 // Frontend
 $menu-width: 40px;

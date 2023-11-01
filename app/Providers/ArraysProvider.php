@@ -161,6 +161,16 @@ class ArraysProvider extends ServiceProvider
             11 => 'November',
             12 => 'December'
         ];
+        $laboratory = [
+            'lab',
+            'lab2'
+        ];
+        $radiology = [
+            'rad'
+        ];
+        $medicine = [
+            'med'
+        ];
         // Share the specialties array with all views
         View::share('specialties', $specialties);
         View::share('specialties_ar', $specialties_ar);
@@ -168,6 +178,9 @@ class ArraysProvider extends ServiceProvider
         View::share('insurances_ar', $insurances_ar);
         View::share('work_hours', $work_hours);
         View::share('months', $months);
+        View::share('laboratory', $laboratory);
+        View::share('radiology', $radiology);
+        View::share('medicine', $medicine);
     }
 
 }

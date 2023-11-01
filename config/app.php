@@ -173,6 +173,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         willvincent\Rateable\RateableServiceProvider::class,
         App\Providers\ArraysProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -191,6 +192,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'Date' => Jenssegers\Date\Date::class,
     ])->toArray(),
 
 ];

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
 use ProtoneMedia\Splade\Facades\SEO;
 use App\Rules\UniqueEmailAcrossTables;
 use ProtoneMedia\Splade\Facades\Toast;
@@ -230,7 +231,7 @@ class DoctorController extends Controller
         $doctor->password = Hash::make($req->password);
         $save = $doctor->save();
         if($save) {
-            Toast::title('Doctor Registered Successfuly!')
+            Toast::success('Doctor Registered Successfuly!')
             ->autoDismiss(5);
             return redirect()->route('home');
         }else {
@@ -246,7 +247,7 @@ class DoctorController extends Controller
             ]);
         $creds = $req->only('email','password');
         if(Auth::guard('doctor')->attempt($creds)) {
-            Toast::title('Logged In Successfuly!')
+            Toast::success('Logged In Successfuly!')
             ->autoDismiss(5);
             return redirect()->route('home');
         }else {
@@ -259,7 +260,7 @@ class DoctorController extends Controller
         Auth::guard('doctor')->logout();
         $req->session()->invalidate();
         $req->session()->regenerateToken();
-        Toast::title('Logout Successfuly :)')
+        Toast::success(Lang::get('auth.logout'))
         ->autoDismiss(5);
         return redirect()->route('home');
     }
@@ -312,7 +313,7 @@ class DoctorController extends Controller
         $oldImage = $doctor->image; // get the old image path
         // check if the doctor did not change anything
         if ($formField['name'] == $doctor->name && $formField['email'] == $doctor->email && (!$req->hasFile('image') || $oldImage == $formField['image'])) {
-            Toast::danger('You can\'t update your data without changing it!');
+            Toast::danger(Lang::get('toast.data_changed'));
             return redirect()->back();
         }
         $oldImage = $doctor->image; // get the old image path
@@ -330,7 +331,7 @@ class DoctorController extends Controller
             unset($formField['image']); // remove 'image' from the form fields if no new image is uploaded
         }
         $doctor->update($formField);
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
         return redirect()->back();
     }
     public function personal_update(Request $req) {
@@ -354,7 +355,7 @@ class DoctorController extends Controller
             }
         }
         if (!$isDataChanged) {
-            Toast::danger('You can\'t update your data without changing it!');
+            Toast::danger(Lang::get('toast.data_changed'));
             return redirect()->back();
         }
         $doctor->first_name = $req->first_name;
@@ -364,7 +365,7 @@ class DoctorController extends Controller
         $doctor->gender = $req->gender;
         $doctor->national_id = $req->national_id;
         $doctor->update($formField);
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
         return redirect()->back();
     }
     public function social_update(Request $req) {
@@ -385,7 +386,7 @@ class DoctorController extends Controller
             }
         }
         if (!$isDataChanged) {
-            Toast::danger('You can\'t update your data without changing it!');
+            Toast::danger(Lang::get('toast.data_changed'));
             return redirect()->back();
         }
         $doctor->facebook = $req->facebook;
@@ -393,7 +394,7 @@ class DoctorController extends Controller
         $doctor->twitter = $req->twitter;
         $doctor->linkedin = $req->linkedin;
         $doctor->save();
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
         return redirect()->back();
     }
     public function job_update(Request $req) {
@@ -416,7 +417,7 @@ class DoctorController extends Controller
         // }
         // $doctor->specialty = $req->specialty;
         // $doctor->update($formField);
-        Toast::title('Profile Updated Successfully!');
+        Toast::success(Lang::get('toast.profile_updated'));
         return redirect()->back();
     }
     public function pwd_update(Request $req) {
@@ -436,14 +437,14 @@ class DoctorController extends Controller
         $doctor->password = Hash::make($req->input('password'));
         $doctor->save();
 
-        Toast::title('Password Updated Successfully!');
+        Toast::success(Lang::get('toast.pwd_update'));
         return redirect()->back();
     }
     public function delete_profile(Request $req) {
         $doctor = Doctor::find($req->id);
         $doctor->delete();
         Auth::guard('doctor')->logout();
-        Toast::title('Account has been deleted succesfuly, sad to see you go :(');
+        Toast::success(Lang::get('toast.acc_delete'));
         return redirect()->route('home');
     }
 

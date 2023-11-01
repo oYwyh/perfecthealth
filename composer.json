@@ -10,6 +10,7 @@
         "gufy/pdftohtml-php": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
+        "jenssegers/date": "^4.0",
         "jorenvanhocht/laravel-share": "^4.2",
         "jrean/laravel-user-verification": "^11.0",
         "khaled.alshamaa/ar-php": "^6.3",
@@ -47,7 +48,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/functions.php"
+            "app/Helpers/functions.php",
+            "app/Helpers/functions.js"
         ]
     },
     "autoload-dev": {

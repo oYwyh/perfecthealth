@@ -1,16 +1,16 @@
 <x-doctor.layout>
     <x-doctor.content class="bg">
 
-        <div class="title">Prescriptions</div>
+        <div class="title">@lang('titles.al')@lang('titles.prescription')</div>
         <div class="wrapper prescription">
                 <x-splade-toggle  data="laboratory,radiology,medicine">
-                        <div class="toggle" id="toggle">
-                            <ul >
-                                <li id="lab-toggle" >Laboratory</li>
-                                <li id="rad-toggle" >Radiology</li>
-                                <li id="med-toggle" >Medicine</li>
-                            </ul>
-                        </div>
+                    <div class="toggle" id="toggle">
+                        <ul >
+                            <li id="lab-toggle" >@lang('titles.laboratory')</li>
+                            <li id="rad-toggle" >@lang('titles.radiology')</li>
+                            <li id="med-toggle" >@lang('titles.medicine')</li>
+                        </ul>
+                    </div>
                     <div class="parent active" id="lab-parent">
                         <div class="presc" id="prescLab">
                             @php
@@ -19,16 +19,19 @@
                             @endphp
                             <div class="presc-img" id="presc-img">
                             </div>
-                            <div class="row">
+                            <div class="presc-box">
                                 <div class="prescription" id="prescription">
                                     <div class="header">
-                                        <div class="info">
-                                            <p class="name">Patient: {{$app->patient}}</p>
-                                            <p class="diagnosis">Diagnosis: {{$app->diagnosis}}</p>
-                                            <p class="date">Date: {{$app->date}}</p>
-                                        </div>
                                         <div class="logo">
-                                            <img src="{{asset('images/logo/logo.png')}}" alt="">
+                                            <img src="{{asset('images/logo/prescription.png')}}" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <div class="wrapper">
+                                                <p class="name">الأســــــم : &nbsp;<span>{{$app->patient}}</span></p>
+                                                <p class="name">الســــــــن : &nbsp;<span>{{$app->patient}}</span></p>
+                                                <p class="diagnosis">التشخيص : &nbsp;<span>{{$app->diagnosis}}</span></p>
+                                                <p class="date">التاريـــــــخ : &nbsp;<span>{{Carbon\Carbon::now()->locale('ar')->format('Y/m/d')}}</span> </p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="content">
@@ -41,20 +44,31 @@
                                         </div>
                                     </div>
                                     <div class="footer">
-                                        <p class="address">
-                                            ٦ اكتوبر - ٣٦١ المحور المركزي - امام التوحيد والنور بجوار المنوفي الكبابجي
-                                        </p>
-                                        <div class="box">
-                                            <p class="appartement">الدور الثاني ت: ٠١٠٢٤٨٢٤٧١٦</p>
-                                            <p class="website">www .waleedhaikal.com</p>
+                                        <div class="address">
+                                            <p>
+                                                ٦ اكتوبر - ٣٦١ المحور المركزي - امام التوحيد والنور بجوار المنوفي الكبابجي
+                                                الدور الثاني شقة 4
+                                            </p>
+                                            <p>
+                                                الجـــيــــزة - المـــــحور المــــركــزي - عقــــــار 9 مــــــول الداون تـــــــــاون - عيــــــــاده 315
+                                            </p>
+                                        </div>
+                                        <div class="info">
+                                            <p class="appartement">ت: ٠١٠٢٤٨٢٤٧١٦</p>
+                                            <p class="website">www.waleedhaikal.com</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="editor" id="editor">
                                     <x-splade-form id="editForm">
-                                        <x-splade-textarea id="editTxt" name="history" autosize label="Prescription Editor"/>
-                                        <div class="note text-red-500">Note: hit enter to start new line</div>
-                                        <x-splade-submit id="editBtn" style="width: 100%" label="edit" class="mt-2" />
+                                        <div class="column-group">
+                                            <label for="editor">@lang('titles.al')@lang('titles.prescription') @lang('titles.editor')</label>
+                                            <x-splade-textarea id="editTxt" name="editor" autosize/>
+                                        </div>
+                                        <x-splade-submit id="editBtn" style="width: 100%" label="edit" class="mt-2" >
+                                            @lang('buttons.edit')
+                                        </x-splade-submit>
+                                        <div class="note mt-4 text-red-500">@lang('messages.prescNote')</div>
                                     </x-splade-form>
                                 </div>
                             </div>
@@ -69,16 +83,19 @@
                                 @endphp
                             <div class="presc-img" id="presc-img">
                             </div>
-                            <div class="row">
+                            <div class="presc-box">
                                 <div class="prescription" id="prescription">
                                     <div class="header">
-                                        <div class="info">
-                                            <p class="name">Patient: {{$app->patient}}</p>
-                                            <p class="diagnosis">Diagnosis: {{$app->diagnosis}}</p>
-                                            <p class="date">Date: {{$app->date}}</p>
-                                        </div>
                                         <div class="logo">
-                                            <img src="{{asset('images/logo/logo.png')}}" alt="">
+                                            <img src="{{asset('images/logo/prescription.png')}}" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <div class="wrapper">
+                                                <p class="name">الأســــــم : &nbsp;<span>{{$app->patient}}</span></p>
+                                                <p class="name">الســــــــن : &nbsp;<span>{{$app->patient}}</span></p>
+                                                <p class="diagnosis">التشخيص : &nbsp;<span>{{$app->diagnosis}}</span></p>
+                                                <p class="date">التاريـــــــخ : &nbsp;<span>{{Carbon\Carbon::now()->locale('ar')->format('Y/m/d')}}</span> </p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="content">
@@ -91,20 +108,31 @@
                                         </div>
                                     </div>
                                     <div class="footer">
-                                        <p class="address">
-                                            ٦ اكتوبر - ٣٦١ المحور المركزي - امام التوحيد والنور بجوار المنوفي الكبابجي
-                                        </p>
-                                        <div class="box">
-                                            <p class="appartement">الدور الثاني ت: ٠١٠٢٤٨٢٤٧١٦</p>
-                                            <p class="website">www .waleedhaikal.com</p>
+                                        <div class="address">
+                                            <p>
+                                                ٦ اكتوبر - ٣٦١ المحور المركزي - امام التوحيد والنور بجوار المنوفي الكبابجي
+                                                الدور الثاني شقة 4
+                                            </p>
+                                            <p>
+                                                الجـــيــــزة - المـــــحور المــــركــزي - عقــــــار 9 مــــــول الداون تـــــــــاون - عيــــــــاده 315
+                                            </p>
+                                        </div>
+                                        <div class="info">
+                                            <p class="appartement">ت: ٠١٠٢٤٨٢٤٧١٦</p>
+                                            <p class="website">www.waleedhaikal.com</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="editor" id="editor">
                                     <x-splade-form id="editForm">
-                                        <x-splade-textarea id="editTxt" name="history" autosize label="Prescription Editor"/>
-                                        <div class="note text-red-500">Note: hit enter to start new line</div>
-                                        <x-splade-submit id="editBtn" style="width: 100%" label="edit" class="mt-2" />
+                                        <div class="column-group">
+                                            <label for="editor">@lang('titles.al')@lang('titles.prescription') @lang('titles.editor')</label>
+                                            <x-splade-textarea id="editTxt" name="editor" autosize/>
+                                        </div>
+                                        <x-splade-submit id="editBtn" style="width: 100%" label="edit" class="mt-2" >
+                                            @lang('buttons.edit')
+                                        </x-splade-submit>
+                                        <div class="note mt-4 text-red-500">@lang('messages.prescNote')</div>
                                     </x-splade-form>
                                 </div>
                             </div>
@@ -119,16 +147,19 @@
                                 @endphp
                             <div class="presc-img" id="presc-img">
                             </div>
-                            <div class="row">
+                            <div class="presc-box">
                                 <div class="prescription" id="prescription">
                                     <div class="header">
-                                        <div class="info">
-                                            <p class="name">Patient: {{$app->patient}}</p>
-                                            <p class="diagnosis">Diagnosis: {{$app->diagnosis}}</p>
-                                            <p class="date">Date: {{$app->date}}</p>
-                                        </div>
                                         <div class="logo">
-                                            <img src="{{asset('images/logo/logo.png')}}" alt="">
+                                            <img src="{{asset('images/logo/prescription.png')}}" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <div class="wrapper">
+                                                <p class="name">الأســــــم : &nbsp;<span>{{$app->patient}}</span></p>
+                                                <p class="name">الســــــــن : &nbsp;<span>{{$app->patient}}</span></p>
+                                                <p class="diagnosis">التشخيص : &nbsp;<span>{{$app->diagnosis}}</span></p>
+                                                <p class="date">التاريـــــــخ : &nbsp;<span>{{Carbon\Carbon::now()->locale('ar')->format('Y/m/d')}}</span> </p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="content">
@@ -141,20 +172,31 @@
                                         </div>
                                     </div>
                                     <div class="footer">
-                                        <p class="address">
-                                            ٦ اكتوبر - ٣٦١ المحور المركزي - امام التوحيد والنور بجوار المنوفي الكبابجي
-                                        </p>
-                                        <div class="box">
-                                            <p class="appartement">الدور الثاني ت: ٠١٠٢٤٨٢٤٧١٦</p>
-                                            <p class="website">www .waleedhaikal.com</p>
+                                        <div class="address">
+                                            <p>
+                                                ٦ اكتوبر - ٣٦١ المحور المركزي - امام التوحيد والنور بجوار المنوفي الكبابجي
+                                                الدور الثاني شقة 4
+                                            </p>
+                                            <p>
+                                                الجـــيــــزة - المـــــحور المــــركــزي - عقــــــار 9 مــــــول الداون تـــــــــاون - عيــــــــاده 315
+                                            </p>
+                                        </div>
+                                        <div class="info">
+                                            <p class="appartement">ت: ٠١٠٢٤٨٢٤٧١٦</p>
+                                            <p class="website">www.waleedhaikal.com</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="editor" id="editor">
                                     <x-splade-form id="editForm">
-                                        <x-splade-textarea id="editTxt" name="history" autosize label="Prescription Editor"/>
-                                        <div class="note text-red-500">Note: hit enter to start new line</div>
-                                        <x-splade-submit id="editBtn" style="width: 100%" label="edit" class="mt-2" />
+                                        <div class="column-group">
+                                            <label for="editor">@lang('titles.al')@lang('titles.prescription') @lang('titles.editor')</label>
+                                            <x-splade-textarea id="editTxt" name="editor" autosize/>
+                                        </div>
+                                        <x-splade-submit id="editBtn" style="width: 100%" label="edit" class="mt-2" >
+                                            @lang('buttons.edit')
+                                        </x-splade-submit>
+                                        <div class="note mt-4 text-red-500">@lang('messages.prescNote')</div>
                                     </x-splade-form>
                                 </div>
                             </div>

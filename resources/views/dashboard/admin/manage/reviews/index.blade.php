@@ -1,6 +1,7 @@
 <x-admin.layout>
     <x-admin.content class="bg">
         <div class="title">@lang('titles.manage') @lang('titles.reviews')</div>
+        <Link class="add" href="{{route('admin.manage.reviews.add')}}">@lang('buttons.add') @lang('titles.review')</Link>
         <div class="wrapper" style="">
             <x-splade-table :for="$reviews">
                 @cell('action',$review)

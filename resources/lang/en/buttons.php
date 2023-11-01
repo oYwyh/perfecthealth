@@ -24,6 +24,10 @@ return [
     'print' => 'Print',
     'false' => 'False',
     'true' => 'True',
+    'back' => 'Go Back',
+    'next' => 'Go Next',
+    'more' => 'More',
+    'fullcontrol' => 'Full Control',
 ]
 
 ?>
