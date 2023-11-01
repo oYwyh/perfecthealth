@@ -1295,11 +1295,11 @@ Link {
                     width: 100%;
                     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                     border-radius: 15px;
-                    @media (max-width:776px) {
+                    @media (max-width:991px) {
                         display: none;
                     }
                     &.sm {
-                        @media (min-width:776px) {
+                        @media (min-width:991px) {
                             display: none;
                         }
                         display: flex;

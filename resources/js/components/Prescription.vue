@@ -29,6 +29,7 @@ export default {
             let prescription;
             let xhr;
             saveBtn.addEventListener('click',(e) => {
+                saveBtn.remove()
                 parent = document.getElementById(`presc${type}`);
                 prescription = parent.querySelector(`#prescription`)
                 if(textValue != undefined) {

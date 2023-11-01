@@ -173,7 +173,7 @@
                                 <td class="capital">{{$patient->name ? $patient->first_name . ' ' . $patient->last_name : 'Unkown'}}</td>
                                 <td class="capital">{{$patient->date_of_brith ? \getAge($patient->date_of_brith) : 'Unkown'}}</td>
                                 <td class="capital">{{$patient->gender ? $patient->gender : 'Unkown'}}</td>
-                                <td class="capital" class="md-gone">{{$patient->blood ? $patient->blood : 'Unkown'}}</td>
+                                <td class="capital md-gone">{{$patient->blood ? $patient->blood : 'Unkown'}}</td>
                                 <td class="capital"><Link modal href="{{route('doctor.manage.patient.info',['id' => $patient->id])}}">More</Link></td>
                             </tr>
                         @endforeach
