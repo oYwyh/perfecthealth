@@ -2,40 +2,54 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-class UniqueEmailAcrossTables implements Rule
+class UniqueEmailAcrossTables implements ValidationRule
 {
-    private $ignoreId;
+    private $userId;
+    private $userRole;
 
-    public function __construct($ignoreId = null)
+    public function __construct($userId)
     {
-        $this->ignoreId = $ignoreId;
+        $this->userId = $userId;
+        $this->userRole = $this->getRoleFromGuard();
     }
 
-    public function passes($attribute, $value)
+    private function getRoleFromGuard()
     {
-        // Add the names of the tables you want to check the email against
-        $tables = ['doctors', 'users', 'admins','receptionists'];
+        $guard = Auth::getDefaultDriver();
+
+        // Map the guard name to the corresponding table name
+        $guardToRoleMap = [
+            'web' => 'users',
+            'admin' => 'admins',
+            'doctor' => 'doctors',
+            'receptionist' => 'reciptionists',
+        ];
+
+        return $guardToRoleMap[$guard] ?? null;
+    }
+
+    public function validate(string $attribute, $value, Closure $fail): void
+    {
+        $tables = ['admins', 'users', 'doctors', 'receptionists'];
 
         foreach ($tables as $table) {
             $query = DB::table($table)->where('email', $value);
 
-            if ($this->ignoreId) {
-                $query->where('id', '!=', $this->ignoreId);
+            // If the table corresponds to the user's role, ignore their id
+            if ($table === $this->userRole) {
+                $query->where('id', '!=', $this->userId);
             }
 
-            if ($query->exists()) {
-                return false;
+            $exists = $query->exists();
+
+            if ($exists) {
+                $fail("The :attribute has already been taken.");
             }
         }
-
-        return true;
-    }
-
-    public function message()
-    {
-        return 'The :attribute has already been taken.';
     }
 }

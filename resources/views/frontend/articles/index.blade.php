@@ -67,17 +67,18 @@
                                 </div>
                                 <ul class="tags">
                                     @if(Session::get('locale') == 'en')
-                                        @foreach(explode(',',$article->tags) as $tag)
-                                            <li>
-                                                <Link class="link outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
-                                            </li>
-                                        @endforeach
+                                    @foreach(array_slice(explode(',', $article->tags), 0, 2) as $tag)
+                                        <li>
+                                            <Link class="link outline-btn" href="/articles?tag={{ $tag }}">{{ $tag }}</Link>
+                                        </li>
+                                    @endforeach
+
                                     @else
-                                        @foreach(explode(',',$article->tags_ar) as $tag)
-                                            <li>
-                                                <Link class="link outline-btn" href="/articles?tag={{$tag}}">{{$tag}}</Link>
-                                            </li>
-                                        @endforeach
+                                    @foreach(array_slice(explode(',', $article->tags_ar), 0, 2) as $tag)
+                                        <li>
+                                            <Link class="link outline-btn" href="/articles?tag={{ $tag }}">{{ $tag }}</Link>
+                                        </li>
+                                    @endforeach
                                     @endif
                                 </ul>
                                 <Link href="/articles/{{$article->id}}" class="btn primary-btn">
