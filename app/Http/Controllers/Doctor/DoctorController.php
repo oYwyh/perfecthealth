@@ -442,6 +442,10 @@ class DoctorController extends Controller
     }
     public function delete_profile(Request $req) {
         $doctor = Doctor::find($req->id);
+        $oldImage = $doctor->image;
+        if($oldImage && file_exists(public_path('storage/'.$oldImage)) && $oldImage != 'images/profiles/default.jpg') {
+            unlink(public_path('storage/'.$oldImage));
+        }
         $doctor->delete();
         Auth::guard('doctor')->logout();
         Toast::success(Lang::get('toast.acc_delete'));

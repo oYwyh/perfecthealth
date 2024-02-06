@@ -1,22 +1,30 @@
 <?php
 
 return [
-    'landingTitle' => 'أستشاري جراحة عامة',
-    'landingDescription' => 'نحن نهتم بصحتك',
-    'landingBtn' => '!تواصل معنا',
-    'landginEndBoxOneTitle' => 'جراحة عامة',
-    'landginEndBoxOneDescription' => 'حل لكل شئ',
-    'landginEndBoxTwoTitle' => 'جراحة اوعية دموية',
-    'landginEndBoxTwoDescription' => 'حل لكل شئ',
-    'landginEndBoxThreeTitle' => 'جراحة اطفال',
-    'landginEndBoxThreeDescription' => 'حل لكل شئ',
+    'landingTitleOne' => 'بيرفكت هيلث',
+    'landingTitleTwo' => 'المثالية هدفنا',
+    'landingDescriptionOne' => 'الحل الامثل لنظم إدارة المستشفيات
+                                نحن نظام إداره مستشفيات يقدم خدمه متكاملة
+                                خدمات الى المستشفيات من جميع الأحجام والتخصصات',
+    'landingDescriptionTwo' => 'سواء كنت تحتاج مساعدة في تجهيز طاقم العمل، الفواتير، مش عارف، الجودة او التكنولوجيا، فلدينا الخبراء والخبرة لمساعدتك في هذا كله
+                                مهمتنا هي المساعدة في تطوير جودة المستشفى، راحة المرضى، مش عارف ',
+    'landingBtnOne' => '!تواصل معنا',
+    'landingBtnTwo' => 'اعرف اكثر!',
+    'aboutTitle' => 'عن بيرفكت هيلث',
+    'aboutDescription' => 'أحد أبرز مقدمي حلول الرعاية الصحية في منطقة الشرق الأوسط وشمال أفريقيا
+    مقرها في الشيخ زايد، الجيزة، مصر.',
+    'aboutCheckOne' => 'تصفح الصفحة',
+    'aboutCheckTwo' => 'أهتر الخدمة',
+    'aboutCheckThree' => 'أتصل بنا',
+    'aboutBtn' => '!أعرف أكثر',
     'waleed' => 'د/ وليد هيكل',
     'specialty' => 'جراحة عامة',
     'servicesTitle' => 'خدماتنا',
-    'articlesTitle' => 'أحدث المقالات',
+    'articlesTitle' => 'أحدث الأخبار',
     'uniqueTitle' => 'ماذا يميزنا عن الآخرين؟',
     'insurancesTitle' => 'هل عليك الوثوق بنا ؟',
-    'statsTitle' => 'نجاحاتنا',
+    'statsTxtOne' => 'سنوات الخبرة',
+    'statsTxtTwo' => 'عميل سعيد',
     'reviewsTitle' => 'آراء عملائنا',
     'contactTitle' => 'تواصل معنا',
     'locationTitle' => 'موقعنا',

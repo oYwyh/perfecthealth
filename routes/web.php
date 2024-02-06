@@ -5,18 +5,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthConroller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\WordController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\User\UserController;
+
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Admin\AdminController;
-
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\SocialMediaShareController;
 use App\Http\Controllers\Admin\Manage\AdminMailController;
 use App\Http\Controllers\Admin\Manage\AdminUserController;
 use App\Http\Controllers\Admin\Manage\AdminAdminController;
@@ -59,6 +62,7 @@ Route::middleware(['splade'])->group(function () {
     // Registers routes to support async File Uploads with Filepond...
     Route::spladeUploads();
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'homeRed'])->name('homeRed');
     Route::get('/login', [HomeController::class, 'login'])->name('login');
     Route::get('/test', [HomeController::class, 'test'])->name('test');
     Route::get('/send-code', [MailController::class, 'verify'])->name('send-code');
@@ -69,7 +73,7 @@ Route::middleware(['splade'])->group(function () {
     Route::view('/reset/password/email', 'auth.password.index')->name('reset.password.email');
     Route::post('/reset/password/email',  [AuthConroller::class, 'get_email'])->name('reset.password.email.post');
     Route::get('/reset/password/{token}', [AuthConroller::class, 'get_token'])->name('reset.password.req');
-    Route::get('social-share', [App\Http\Controllers\SocialMediaShareController::class, 'index']);
+    Route::get('social-share', [SocialMediaShareController::class, 'index']);
     Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
     Route::post('/back', [GlobalController::class, 'back'])->name('back');
 
@@ -101,6 +105,9 @@ Route::middleware(['splade'])->group(function () {
     Route::prefix('articles')->name('articles.')->group(function(){
         Route::get('/', [ArticleController::class, 'index'])->name('index');
         Route::get('/{article}',[ArticleController::class,'show'])->name('show');
+    });
+    Route::prefix('info')->name('info.')->group(function(){
+        Route::get('/', [InfoController::class, 'index'])->name('index');
     });
     Route::prefix('patient')->name('patient.')->group(function(){
         Route::middleware(['auth:receptionist,admin','PreventBackHistory'])->group(function(){

@@ -11,7 +11,6 @@
             <div class="group">
                 <div class="title">@lang('articlespage.title')</div>
                 <x-partials.search />
-
             </div>
         </div>
         <div class="wrapper">

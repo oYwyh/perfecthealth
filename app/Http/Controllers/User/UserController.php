@@ -138,7 +138,7 @@ class UserController extends Controller
             'name'=>'required',
             'first_name'=>'required',
             'last_name'=>'required',
-            'email' => ['required', 'email', new UniqueEmailAcrossTables],
+            'email' => ['required', 'email', new UniqueEmailAcrossTables($req->user())],
             'date_of_brith'=>'required',
             'gender'=>'required',
             'password'=>'required',
@@ -324,12 +324,12 @@ class UserController extends Controller
             $appointment->save();
         }
         $oldImage = $user->image;
-        if($oldImage && file_exists(public_path('storage/'.$oldImage))) {
+        if($oldImage && file_exists(public_path('storage/'.$oldImage)) && $oldImage != 'images/profiles/default.jpg') {
             unlink(public_path('storage/'.$oldImage));
         }
         $user->delete();
         Auth::logout();
-        Toast::info(Lang::get('toast.acc_deleted'));
+        Toast::info(Lang::get('toast.acc_delete'));
         return redirect()->route('home');
     }
 

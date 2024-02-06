@@ -28,6 +28,7 @@
                     <ul>
                         <li><Link href="#">@lang('footer.home')</Link></li>
                         <li><Link href="#">@lang('footer.articles')</Link></li>
+                        <li><Link href="#">@lang('footer.info')</Link></li>
                         @auth('admin')
                             <li><Link class="link" href="{{route('admin.home')}}">@lang('footer.dashboard') </Link><span></span></li>
                         @endauth

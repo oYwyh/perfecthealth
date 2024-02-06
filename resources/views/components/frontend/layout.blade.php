@@ -18,45 +18,48 @@
         @else
     <body>
 @endif
-    <div id="backdrop" class=""></div>
-    <div class="top" id="top">
-        <i class="fa-solid fa-chevron-up"></i>
-    </div>
-    <x-frontend.header />
-        <div class="front-main">
-            {{$slot}}
-            <x-frontend.footer />
+    <div class="layout">
+        <div id="backdrop" class=""></div>
+        <div class="top" id="top">
+            <i class="fa-solid fa-chevron-up"></i>
         </div>
-        <loader />
-        <x-splade-script>
-            const top = document.querySelector('#top');
+        {{-- <x-frontend.pre-header /> --}}
+        <x-frontend.header />
+            <div class="front-main">
+                {{$slot}}
+                <x-frontend.footer />
+            </div>
+            <loader />
+            <x-splade-script>
+                const top = document.querySelector('#top');
 
-            const displayButton = () => {
-                window.addEventListener('scroll', () => {
-                if (window.scrollY > 200) {
-                    top.style.opacity = '1';
-                    top.style.display = "flex";
-                }else {
-                    top.style.opacity = '0';
-                    top.style.display = "none";
-                }
-                });
-            };
+                const displayButton = () => {
+                    window.addEventListener('scroll', () => {
+                    if (window.scrollY > 200) {
+                        top.style.opacity = '1';
+                        top.style.display = "flex";
+                    }else {
+                        top.style.opacity = '0';
+                        top.style.display = "none";
+                    }
+                    });
+                };
 
-            const scrollToTop = () => {
-                top.addEventListener("click", () => {
-                window.scroll({
-                    top: 0,
-                    left: 0,
-                    behavior: 'smooth'
-                });
-                console.log(event);
-                });
-            };
+                const scrollToTop = () => {
+                    top.addEventListener("click", () => {
+                    window.scroll({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                    console.log(event);
+                    });
+                };
 
-            displayButton();
-            scrollToTop();
+                displayButton();
+                scrollToTop();
 
-        </x-splade-script>
+            </x-splade-script>
+    </div>
 </body>
 </html>

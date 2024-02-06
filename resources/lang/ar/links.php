@@ -14,7 +14,7 @@ return [
     'insurances' => 'التوكيلات',
     'newsletter' => 'النشره الأخبارية',
     'reviews' => 'الآراء',
-    'articles' => 'المقالات',
+    'articles' => 'الأخبار',
     'dashboard' => 'لوحه التحكم',
     'mails' => 'البريد',
     'files' => 'الملفات',

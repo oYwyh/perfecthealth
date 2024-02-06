@@ -22,7 +22,7 @@ class HomeController extends Controller
 {
 
     public function index(){
-        
+
         $articles = Article::latest()->where('verified',1)->take(6)->get();
         $reviews = Review::latest()->with('author')->take(6)->get();
         $services = Service::latest()->where('frontpage',1)->take(4)->get();
@@ -59,6 +59,9 @@ class HomeController extends Controller
                 'insurances' => $insurances,
             ]
         );
+    }
+    public function homeRed() {
+        return redirect()->route('home');
     }
     public function login() {
         return view('auth.auth');

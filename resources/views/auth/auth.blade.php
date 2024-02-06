@@ -34,12 +34,12 @@
                             <button class="create" @click.prevent="toggle">@lang('auth.create')</button>
                             <div class="divider">Or</div>
                             <ul class="socialite">
-                                <Link class="google-btn" href="{{route('auth.google.index')}}">
+                                {{-- <Link class="google-btn" href="{{route('auth.google.index')}}">
                                     <div class="google-icon-wrapper">
-                                        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                                        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"/>
                                     </div>
                                     <p class="btn-text"><b>@lang('auth.google')</b></p>
-                                </Link>
+                                </Link> --}}
                                 <Link class="facebook-btn" href="{{route('auth.facebook.index')}}">
                                     <div class="facebook-icon-wrapper">
                                         <img class="facebook-icon" src="https://upload.wikimedia.org/wikipedia/commons/7/79/Facebook_f_logo_2013.png"/>
@@ -100,12 +100,12 @@
                         <div class="box end">
                             <div class="divider">@lang('auth.or')</div>
                             <ul class="socialite">
-                                <Link class="google-btn" href="{{route('auth.google.index')}}">
+                                {{-- <Link class="google-btn" href="{{route('auth.google.index')}}">
                                     <div class="google-icon-wrapper">
                                         <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
                                     </div>
                                     <p class="btn-text"><b>@lang('auth.google')</b></p>
-                                </Link>
+                                </Link> --}}
                                 <Link class="facebook-btn" href="{{route('auth.facebook.index')}}">
                                     <div class="facebook-icon-wrapper">
                                         <img class="facebook-icon" src="https://upload.wikimedia.org/wikipedia/commons/7/79/Facebook_f_logo_2013.png"/>

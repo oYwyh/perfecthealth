@@ -17,7 +17,7 @@
     <div class="wrapper">
         <div class="start">
             <Link class="logo" href="{{route('home')}}">
-                <img src="{{asset('images/logo/full/gold_horizontal.png')}}" alt="">
+                <img src="{{asset('images/logo/perfect-horizontal.png')}}" alt="">
             </Link>
         </div>
         <div class="center">
@@ -38,6 +38,7 @@
                 </x-splade-toggle> --}}
                 {{-- <li><Link class="link" href="#">About </Link><span></span></li> --}}
                 <li><Link class="link" href="{{route('articles.index')}}">@lang('header.articles') </Link><span></span></li>
+                <li><Link class="link" href="{{route('info.index')}}">@lang('header.info') </Link><span></span></li>
                 @auth('admin')
                     <li><Link class="link" href="{{route('admin.home')}}">@lang('header.dashboard') </Link><span></span></li>
                 @endauth
@@ -159,7 +160,7 @@
                 <div class="side-wrapper">
                     <div id="mySidenav" class="sidenav">
                         <div class="header">
-                            <img src="{{asset('images/logo/full/gold_horizontal.png')}}" alt="">
+                            <img src="{{asset('images/logo/perfect-horizontal.png')}}" alt="">
                             <div id="close">
                                 <svg data-v-575a134c="" data-v-6075a6c8="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="close" role="presentation" class="h-nav__mobile-menu-burger h-icon-dark" style="width: 24px; height: 24px;"><g data-v-575a134c=""><path data-v-575a134c="" fill-rule="evenodd" clip-rule="evenodd" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path></g></svg>                        </div>
                             </div>
@@ -330,11 +331,11 @@
 @endauth
 <x-splade-script>
 
-    if(document.querySelector('.profile-pic') != null) {
+    {{-- if(document.querySelector('.profile-pic') != null) {
         document.querySelector('.profile-pic').onclick = () => {
             document.querySelector('.profile-pic').classList.toggle('margin')
         }
-    }
+    } --}}
     if(document.getElementById('login') != null) {
         document.getElementById('login').onclick = () => {
             toggleNav()

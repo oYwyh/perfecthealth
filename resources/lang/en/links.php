@@ -14,7 +14,7 @@ return [
     'insurances' => 'Insurances',
     'newsletter' => 'Newsletter',
     'reviews' => 'Reviews',
-    'articles' => 'Articles',
+    'articles' => 'News',
     'dashboard' => 'Dashboard',
     'mails' => 'Mails',
     'files' => 'Files',

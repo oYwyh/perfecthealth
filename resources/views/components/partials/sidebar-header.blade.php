@@ -1,7 +1,7 @@
 <div class="header" href="{{route('home')}}">
     <Link class="logo" href="{{route('home')}}">
         {{-- <i class="fa-brands fa-apple"></i> --}}
-        <img src="{{asset('images/logo/icon/gold.png')}}" alt="">
+        <img src="{{asset('images/logo/perfect.png')}}" alt="">
         {{-- app --}}
     </Link>
     <div class="toggle">

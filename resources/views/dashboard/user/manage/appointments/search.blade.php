@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="form-column">
-                            <label for="end_date">@lang('labels.from') @lang('labels.date')</label>
+                            <label for="end_date">@lang('labels.to') @lang('labels.date')</label>
                             <x-splade-input class="input" name="end_date" value="{{$carbon->now()->addDays(7)->format('Y-m-d')}}" date />
                         </div>
 

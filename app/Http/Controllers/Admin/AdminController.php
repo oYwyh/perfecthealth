@@ -368,7 +368,7 @@ class AdminController extends Controller
     public function delete_profile(Request $req) {
         $admin = Admin::find($req->id);
         $oldImage = $admin->image;
-        if($oldImage && file_exists(public_path('storage/'.$oldImage))) {
+        if($oldImage && file_exists(public_path('storage/'.$oldImage)) && $oldImage != 'images/profiles/default.jpg') {
             unlink(public_path('storage/'.$oldImage));
         }
         $admin->delete();

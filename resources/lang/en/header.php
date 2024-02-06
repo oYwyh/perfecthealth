@@ -2,7 +2,8 @@
 
 return [
     'home' => 'Home',
-    'articles' => 'Articles',
+    'articles' => 'News',
+    'info' => 'About Us',
     'dashboard' => 'Control Panel',
 ]
 
