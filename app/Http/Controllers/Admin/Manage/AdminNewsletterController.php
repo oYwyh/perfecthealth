@@ -33,6 +33,4 @@ class AdminNewsletterController extends Controller
         Toast::success(Lang::get('toast.newsletter_deleted'));
         return redirect()->back();
     }
-
-
 }

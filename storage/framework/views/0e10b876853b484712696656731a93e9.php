@@ -1,0 +1,1 @@
+<?php /**PATH /home/ywyh/coding/github/perfecthealth/resources/views/components/admin/footer.blade.php ENDPATH**/ ?>

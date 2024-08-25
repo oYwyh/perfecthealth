@@ -158,10 +158,10 @@ class UserController extends Controller
         $user->image = 'images/profiles/default.jpg';
         $user->password = Hash::make($req->password);
         $user->verification_code = $verify_code;
-        $user->verified = '0';
+        $user->verified = '1';
         $user->save();
         Auth::guard('web')->login($user);
-        return redirect()->route('send-code');
+        return redirect()->route('home');
     }
     public function check(Request $req) {
         $req->validate([

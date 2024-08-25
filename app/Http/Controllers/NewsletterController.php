@@ -12,7 +12,7 @@ class NewsletterController extends Controller
 {
     public function subscribe(Request $req) {
         $validator = Validator::make($req->all(), [
-            'email' => 'required|email|unique:newsletter,email',
+            'email' => 'required|email|unique:newsletters,email',
         ]);
         if ($validator->fails()) {
             return Toast::danger('Error')
